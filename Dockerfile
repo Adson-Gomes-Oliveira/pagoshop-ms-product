@@ -1,5 +1,6 @@
 FROM node:16.4-alpine
-WORKDIR /app
+WORKDIR /app/product
+COPY package*.json .
+RUN npm install
 COPY . .
-RUN ["npm", "install"]
-CMD ["npm", "start"]
+ENTRYPOINT npm start
