@@ -1,0 +1,2 @@
+db.productCategories.createIndex({ 'CATEGORIA.NOME': 1 });
+db.productCategories.createIndex({ PRODUTO: 1 });
