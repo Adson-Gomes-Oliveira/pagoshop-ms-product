@@ -1,0 +1,14 @@
+use('ecomm-product');
+db.products.find({}).forEach((product) => {
+  const CATEGORIA_FROM_CATEGORIES = db.categories.find(
+    { NOME: product.CATEGORIA },
+    { _id: 0 }
+  ).toArray()[0];
+
+  product.CATEGORIA = CATEGORIA_FROM_CATEGORIES;
+
+  db.productCategories.insertOne({
+    ...product,
+    CATEGORIA: product.CATEGORIA
+  });
+});
