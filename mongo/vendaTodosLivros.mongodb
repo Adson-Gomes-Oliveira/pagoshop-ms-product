@@ -1,0 +1,10 @@
+use('ecomm-product');
+db.productCategories.updateMany(
+  { 'CATEGORIA.NOME': 'LIVROS' },
+  { $set: {
+    QUANTIDADE_EM_ESTOQUE: 0
+  }
+});
+
+use('ecomm-product');
+db.productCategories.find();
