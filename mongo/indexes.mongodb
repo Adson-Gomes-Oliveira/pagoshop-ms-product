@@ -1,2 +1,3 @@
 db.productCategories.createIndex({ 'CATEGORIA.NOME': 1 });
 db.productCategories.createIndex({ PRODUTO: 1 });
+db.productCategories.createIndex({ SLUG: 1 }, { unique: true });
