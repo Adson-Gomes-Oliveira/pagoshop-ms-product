@@ -26,5 +26,10 @@ db.products.aggregate([
       into: { db: "ecomm-order", coll: "orders" },
       whenMatched: "replace"
     }
-  }
+  },
 ]);
+
+use("ecomm-product");
+db.products.updateOne({ "PRODUTO": "Galaxy Tab S8" }, {
+  $inc: { "QUANTIDADE_EM_ESTOQUE": -2 },
+});
