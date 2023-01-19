@@ -2,6 +2,14 @@ use("ecomm-account");
 const buyer = db.users.find({ nome: { $regex: /marina/i } }).toArray()[0];
 
 use("ecomm-product");
+db.products.updateOne({ $and: [
+  { "PRODUTO": "Galaxy Tab S8" },
+  { "QUANTIDADE_EM_ESTOQUE": { $gt: 0 } },
+] }, {
+  $inc: { "QUANTIDADE_EM_ESTOQUE": -2 },
+});
+
+use("ecomm-product");
 db.products.aggregate([
   { $match: { "PRODUTO": "Galaxy Tab S8" } },
   { $project: {
@@ -28,11 +36,3 @@ db.products.aggregate([
     }
   },
 ]);
-
-use("ecomm-product");
-db.products.updateOne({ $and: [
-  { "PRODUTO": "Galaxy Tab S8" },
-  { "QUANTIDADE_EM_ESTOQUE": { $gt: 0 } },
-] }, {
-  $inc: { "QUANTIDADE_EM_ESTOQUE": -2 },
-});
