@@ -24,7 +24,7 @@ db.products.aggregate([
         {
           "PRODUTO": "$PRODUTO",
           "QUANTIDADE": 2,
-          "DESCONTO": NumberDecimal("260.55"),
+          "DESCONTO": 260.55,
           "PREÇO_UNITÁRIO": "$PREÇO_UNITÁRIO",
         },
       ],
