@@ -1,0 +1,30 @@
+use("ecomm-account");
+const buyer = db.users.find({ nome: { $regex: /marina/i } }).toArray()[0];
+
+use("ecomm-product");
+db.products.aggregate([
+  { $match: { "PRODUTO": "Galaxy Tab S8" } },
+  { $project: {
+      _id: 0,
+      pedidoEm: ISODate(),
+      cliente: {
+        cliente_id: buyer._id,
+        nome: buyer.nome,
+      },
+      endereco: buyer.enderecos[0],
+      itens: [
+        {
+          "PRODUTO": "$PRODUTO",
+          "QUANTIDADE": 2,
+          "DESCONTO": NumberDecimal("260.55"),
+          "PREÇO_UNITÁRIO": "$PREÇO_UNITÁRIO",
+        },
+      ],
+  } },
+  {
+    $merge: { 
+      into: { db: "ecomm-order", coll: "orders" },
+      whenMatched: "replace"
+    }
+  }
+]);
