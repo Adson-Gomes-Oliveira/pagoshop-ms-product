@@ -30,6 +30,9 @@ db.products.aggregate([
 ]);
 
 use("ecomm-product");
-db.products.updateOne({ "PRODUTO": "Galaxy Tab S8" }, {
+db.products.updateOne({ $and: [
+  { "PRODUTO": "Galaxy Tab S8" },
+  { "QUANTIDADE_EM_ESTOQUE": { $gt: 0 } },
+] }, {
   $inc: { "QUANTIDADE_EM_ESTOQUE": -2 },
 });
