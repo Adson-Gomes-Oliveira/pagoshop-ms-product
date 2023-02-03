@@ -249,7 +249,8 @@ components:
           name:
             type: string
           status:
-            type: string
+            type: integer
+            example: 1
     Category:
       type: object
       properties:
@@ -258,7 +259,8 @@ components:
         name:
           type: string
         status:
-          type: string
+          type: integer
+          example: 1
     CategoryPost:
       type: object
       properties:
@@ -268,7 +270,8 @@ components:
       type: object
       properties:
         status:
-          type: string
+          type: integer
+          example: 1
     Products:
       type: array
       items:

@@ -11,6 +11,7 @@ app.use(cors());
 app.use(helmet());
 app.get('/health-test', (_req, res) => res.status(200).send('Connection OK'));
 app.use('/api/categories', routes.categoriesRoutes);
+app.use('/api/admin/categories')
 // app.use('/api/admin/categories');
 
 module.exports = app;

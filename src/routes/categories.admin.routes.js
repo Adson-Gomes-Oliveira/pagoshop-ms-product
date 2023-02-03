@@ -3,7 +3,6 @@ const categoriesController = require('../controllers/categories.controller');
 
 const router = Router();
 
-router.get('/', categoriesController.findAll);
-router.post('/admin', categoriesController.create);
+router.post('/', categoriesController.create);
 
 module.exports = router;
