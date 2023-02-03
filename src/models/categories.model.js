@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const categoriesMongooseSchema = new mongoose.Schema({
   id: String,
-  name: String,
-  status: String,
+  name: {type: String, require: true},
+  status: {type: String, require: true},
 }, { versionKey: false });
 
 const CategoriesModel = mongoose.model('categories', categoriesMongooseSchema);

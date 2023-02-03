@@ -10,7 +10,7 @@ const findAll = async (_req, res) => {
 const findOne = async (req, res) => {
   const { id } = req.params;
   const response = await CategoriesModel.findById(id);
-  if (!response) return res.status(HTTPStatus.NO_CONTENT).send("Entity not found")
+  if (!response) return res.status(HTTPStatus.NOT_FOUND).send("Entity not found");
 
   return res.status(HTTPStatus.OK).json(response);
 }
@@ -22,8 +22,9 @@ const create = async (req, res) => {
 
   payload.status = "active";
   const response = await CategoriesModel.create(payload);
-  console.log(response);
-  return res.status(HTTPStatus.CREATED).json(response);
+  return res.status(HTTPStatus.CREATED)
+    .set('Location', `/api/categories/${response._id}`)
+    .json(response);
 }
 
 const edit = async (req, res) => {
@@ -33,28 +34,29 @@ const edit = async (req, res) => {
   if (valid !== null) return res.status(valid.status).send(valid.message);
 
   const response = await CategoriesModel.findByIdAndUpdate(id, payload, { new: true });
-  return res.status(HTTPStatus.CREATED).json(response);
+  return res.status(HTTPStatus.OK).json(response);
 }
 
 const editOne = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
   
-  const valid = validations.editOne(payload, Object.keys(payload)[0]);
-  if (valid !== null) return res.status(valid.status).send(valid.message);
+  // const valid = validations.editOne(payload, Object.keys(payload)[0]);
+  // if (valid !== null) return res.status(valid.status).send(valid.message);
 
   const recoverDoc = await CategoriesModel.findById(id);
 
   const newDoc = { ...recoverDoc._doc, ...payload };
+  console.log(newDoc);
   const response = await CategoriesModel.findByIdAndUpdate(id, newDoc, { new: true });
-  return res.status(HTTPStatus.CREATED).json(response);
+  return res.status(HTTPStatus.OK).json(response);
 }
 
 const deleteOne = async (req, res) => {
   const { id } = req.params;
   await CategoriesModel.findByIdAndDelete(id);
 
-  return res.status(HTTPStatus.DELETED).end();
+  return res.status(HTTPStatus.NO_CONTENT).end();
 }
 
 module.exports = {
