@@ -1,1 +1,2 @@
+use('ecomm-product')
 db.categories.find({ STATUS: 'ATIVA' });
