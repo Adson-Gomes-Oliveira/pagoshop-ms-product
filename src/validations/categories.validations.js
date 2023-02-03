@@ -20,7 +20,21 @@ const edit = (payload) => {
   return null;
 }
 
+const editOne = (payload, key) => {
+  if (key === "name") {
+    return create(payload)
+  } else if (key === "status") {
+    const { error } = JOI.object({
+      status: JOI.string().pattern(new RegExp('^(ativa|inativa)$')).required(),
+    }).validate(payload);
+  
+    if (error) return { status: HTTPStatus.BAD_REQUEST, message: 'Bad format of requisition' };
+    return null;
+  }
+}
+
 module.exports = {
   create,
   edit,
+  editOne,
 }
