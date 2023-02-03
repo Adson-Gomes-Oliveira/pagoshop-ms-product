@@ -6,6 +6,10 @@ const findAll = async (_req, res) => {
   res.status(HTTPStatus.OK).json(response);
 }
 
+const create = async (req, res) => {
+  const payload = req.body;
+}
+
 module.exports = {
   findAll,
 }
