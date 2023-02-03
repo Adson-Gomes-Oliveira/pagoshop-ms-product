@@ -22,6 +22,7 @@ const create = async (req, res) => {
 
   payload.status = "active";
   const response = await CategoriesModel.create(payload);
+  console.log(response);
   return res.status(HTTPStatus.CREATED).json(response);
 }
 
@@ -31,7 +32,7 @@ const edit = async (req, res) => {
   const valid = validations.edit(payload);
   if (valid !== null) return res.status(valid.status).send(valid.message);
 
-  const response = await CategoriesModel.findByIdAndUpdate(id, payload);
+  const response = await CategoriesModel.findByIdAndUpdate(id, payload, { new: true });
   return res.status(HTTPStatus.CREATED).json(response);
 }
 

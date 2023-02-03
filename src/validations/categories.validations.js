@@ -13,7 +13,7 @@ const create = (payload) => {
 const edit = (payload) => {
   const { error } = JOI.object({
     name: JOI.string().min(3).required(),
-    status: JOI.pattern(new RegExp('^(ativa|inativa)$')).required(),
+    status: JOI.string().pattern(new RegExp('^(ativa|inativa)$')).required(),
   }).validate(payload);
 
   if (error) return { status: HTTPStatus.BAD_REQUEST, message: 'Bad format of requisition' };
