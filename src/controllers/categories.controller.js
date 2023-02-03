@@ -7,6 +7,12 @@ const findAll = async (_req, res) => {
   return res.status(HTTPStatus.OK).json(response);
 }
 
+const findOne = async (req, res) => {
+  const { id } = req.params;
+  const response = await CategoriesModel.findById(id);
+  if (!response) return res.status(HTTPStatus.NO_CONTENT).send("Entity not found")
+}
+
 const create = async (req, res) => {
   const payload = req.body;
   const valid = validations.create(payload);
@@ -19,5 +25,6 @@ const create = async (req, res) => {
 
 module.exports = {
   findAll,
+  findOne,
   create,
 }
