@@ -4,6 +4,6 @@ const categoriesController = require('../controllers/categories.controller');
 const router = Router();
 
 router.get('/', categoriesController.findAll);
-router.post('/admin', categoriesController.create);
+router.get('/:id', categoriesController.findOne);
 
 module.exports = router;
