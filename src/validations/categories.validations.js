@@ -3,8 +3,7 @@ const HTTPStatus = require('../../../helpers/HTTP.status');
 
 const create = (payload) => {
   const { error } = JOI.object({
-    name: JOI.string().min(3).required(),
-    status: JOI.string().required(),
+    name: JOI.string().min(3).required()
   }).validate(payload);
 
   if (error) return { status: HTTPStatus.BAD_REQUEST, message: 'Bad format of requisition' };

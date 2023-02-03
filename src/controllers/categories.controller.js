@@ -12,8 +12,9 @@ const create = async (req, res) => {
   const valid = validations.create(payload);
   if (valid !== null) return res.status(valid.status).send(valid.message);
 
+  payload.status = "active";
   const response = await CategoriesModel.create(payload);
-  return res.status(HTTPStatus).json(response);
+  return res.status(HTTPStatus.CREATED).json(response);
 }
 
 module.exports = {
