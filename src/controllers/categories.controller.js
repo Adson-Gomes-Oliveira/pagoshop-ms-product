@@ -41,7 +41,6 @@ const editOne = async (req, res) => {
   const payload = req.body;
   
   const valid = validations.editOne(payload, Object.keys(payload)[0]);
-  console.log(valid);
   if (valid !== null) return res.status(valid.status).send(valid.message);
 
   const recoverDoc = await CategoriesModel.findById(id);
@@ -51,10 +50,18 @@ const editOne = async (req, res) => {
   return res.status(HTTPStatus.CREATED).json(response);
 }
 
+const deleteOne = async (req, res) => {
+  const { id } = req.params;
+  await CategoriesModel.findByIdAndDelete(id);
+
+  return res.status(HTTPStatus.DELETED).end();
+}
+
 module.exports = {
   findAll,
   findOne,
   create,
   edit,
   editOne,
+  deleteOne,
 }
