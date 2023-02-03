@@ -25,8 +25,19 @@ const create = async (req, res) => {
   return res.status(HTTPStatus.CREATED).json(response);
 }
 
+const edit = async (req, res) => {
+  const { id } = req.params;
+  const payload = req.body;
+  const valid = validations.edit(payload);
+  if (valid !== null) return res.status(valid.status).send(valid.message);
+
+  const response = await CategoriesModel.findByIdAndUpdate(id, payload);
+  return res.status(HTTPStatus.CREATED).json(response);
+}
+
 module.exports = {
   findAll,
   findOne,
   create,
+  edit,
 }
