@@ -11,6 +11,8 @@ const findOne = async (req, res) => {
   const { id } = req.params;
   const response = await CategoriesModel.findById(id);
   if (!response) return res.status(HTTPStatus.NO_CONTENT).send("Entity not found")
+
+  return res.status(HTTPStatus.OK).json(response);
 }
 
 const create = async (req, res) => {
