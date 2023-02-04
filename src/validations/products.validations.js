@@ -1,5 +1,5 @@
 const JOI = require('joi');
-const HTTPStatus = require('../../../helpers/HTTP.status');
+const HTTPStatus = require('../../helpers/HTTP.status');
 
 const create = (payload) => {
   const { error } = JOI.object({
@@ -7,7 +7,7 @@ const create = (payload) => {
     description: JOI.string().required(),
     slug: JOI.string().pattern(new RegExp(/^[a-zA-Z0-9-]+$/)).required(),
     unit_price: JOI.number().required(),
-    stock_quantity: JOI.number().min(1).max(10000).required(),
+    quantity: JOI.number().min(1).max(10000).required(),
     category_id: JOI.string().required(),
   }).validate(payload);
 

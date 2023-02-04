@@ -1,5 +1,5 @@
 const CategoriesModel = require('../models/categories.model');
-const HTTPStatus = require('../../../helpers/HTTP.status');
+const HTTPStatus = require('../../helpers/HTTP.status');
 const validations = require('../validations/categories.validations');
 
 const findAll = async (_req, res) => {

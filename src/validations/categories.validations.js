@@ -1,5 +1,5 @@
 const JOI = require('joi');
-const HTTPStatus = require('../../../helpers/HTTP.status');
+const HTTPStatus = require('../../helpers/HTTP.status');
 
 
 const create = (payload) => {
