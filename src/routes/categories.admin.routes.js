@@ -5,7 +5,7 @@ const router = Router();
 
 router.post('/', categoriesController.create);
 router.put('/:id', categoriesController.edit);
-router.patch('/:id', categoriesController.editOne);
+router.patch('/:id', categoriesController.editStatus);
 router.delete('/:id', categoriesController.deleteOne);
 
 module.exports = router;
