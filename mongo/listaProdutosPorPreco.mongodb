@@ -1,5 +1,0 @@
-db.products.find({ PREÇO_UNITÁRIO: { $gte: 1000, $lte: 2000 } }, {
-  _id: 1,
-  PRODUTO: 1,
-  PREÇO_UNITÁRIO: 1,
-});
