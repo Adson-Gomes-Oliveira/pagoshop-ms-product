@@ -84,6 +84,9 @@
           },
           "401": {
             "$ref": "#/components/responses/Unauthorized"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -115,6 +118,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -140,7 +146,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successfully Edited",
             "content": {
               "application/json": {
@@ -158,6 +164,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       },
@@ -199,6 +208,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       },
@@ -224,6 +236,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -262,6 +277,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -302,6 +320,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -333,6 +354,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -358,7 +382,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successfully Edited",
             "content": {
               "application/json": {
@@ -376,6 +400,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       },
@@ -401,6 +428,9 @@
           },
           "404": {
             "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
       }
@@ -420,8 +450,7 @@
               "type": "string"
             },
             "status": {
-              "type": "integer",
-              "example": 1
+              "type": "string"
             }
           }
         }
@@ -436,8 +465,7 @@
             "type": "string"
           },
           "status": {
-            "type": "integer",
-            "example": 1
+            "type": "string"
           }
         }
       },
@@ -453,8 +481,7 @@
         "type": "object",
         "properties": {
           "status": {
-            "type": "integer",
-            "example": 1
+            "type": "string"
           }
         }
       },
@@ -466,7 +493,7 @@
             "id": {
               "type": "string"
             },
-            "name": {
+            "product": {
               "type": "string"
             },
             "description": {
@@ -478,7 +505,7 @@
             "unit_price": {
               "type": "number"
             },
-            "stock_quantity": {
+            "quantity": {
               "type": "integer"
             },
             "category_id": {
@@ -493,7 +520,7 @@
           "id": {
             "type": "string"
           },
-          "name": {
+          "product": {
             "type": "string"
           },
           "description": {
@@ -505,7 +532,7 @@
           "unit_price": {
             "type": "number"
           },
-          "stock_quantity": {
+          "quantity": {
             "type": "integer"
           },
           "category_id": {
@@ -516,7 +543,7 @@
       "ProductPost": {
         "type": "object",
         "properties": {
-          "name": {
+          "product": {
             "type": "string"
           },
           "description": {
@@ -528,7 +555,7 @@
           "unit_price": {
             "type": "number"
           },
-          "stock_quantity": {
+          "quantity": {
             "type": "integer"
           },
           "category_id": {
@@ -539,13 +566,16 @@
     },
     "responses": {
       "BadRequest": {
-        "description": "Bad format of requisition"
+        "description": "Bad format"
       },
       "Unauthorized": {
         "description": "Invalid User or invalid Token"
       },
       "NotFound": {
         "description": "Entity not found"
+      },
+      "UnprocessableEntity": {
+        "description": "Validation Error"
       }
     },
     "parameters": {

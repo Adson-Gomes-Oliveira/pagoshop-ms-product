@@ -14,7 +14,7 @@ const create = (payload) => {
 const edit = (payload) => {
   const { error } = JOI.object({
     name: JOI.string().min(3).pattern(new RegExp(/^[^0-9]/)).required(),
-    status: JOI.string().pattern(new RegExp('^(avtive|inactive)$')).required(),
+    status: JOI.string().pattern(new RegExp('^(active|inactive)$')).required(),
   }).validate(payload);
 
   if (error) return { status: HTTPStatus.UN_ENTITY, message: error.message };
@@ -23,7 +23,7 @@ const edit = (payload) => {
 
 const editOne = (payload) => {
   const { error } = JOI.object({
-    status: JOI.string().pattern(new RegExp('^(avtive|inactive)$')).required(),
+    status: JOI.string().pattern(new RegExp('^(active|inactive)$')).required(),
   }).validate(payload);
 
   if (error) return { status: HTTPStatus.UN_ENTITY, message: error.message };
