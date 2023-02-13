@@ -1,6 +1,6 @@
 const CategoriesModel = require('../models/categories.model');
-const HTTPStatus = require('../../helpers/HTTP.status');
-const validations = require('../validations/categories.validations');
+const HTTPStatus = require('../helpers/HTTP.status');
+const validate = require('../validations/categories.validations');
 
 const findAll = async (_req, res) => {
   const response = await CategoriesModel.find();
@@ -17,8 +17,7 @@ const findOne = async (req, res) => {
 
 const create = async (req, res) => {
   const payload = req.body;
-  const valid = validations.create(payload);
-  if (valid !== null) return res.status(valid.status).send(valid.message);
+  validate.create(payload);
 
   payload.status = "ativa";
   const response = await CategoriesModel.create(payload);
@@ -30,8 +29,7 @@ const create = async (req, res) => {
 const edit = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
-  const valid = validations.edit(payload, id);
-  if (valid !== null) return res.status(valid.status).send(valid.message);
+  validate.edit(payload, id);
 
   const response = await CategoriesModel.findByIdAndUpdate(id, payload, { new: true });
   return res.status(HTTPStatus.OK)
@@ -42,9 +40,7 @@ const edit = async (req, res) => {
 const editStatus = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
-  
-  const valid = validations.editStatus(payload, id);
-  if (valid !== null) return res.status(valid.status).send(valid.message);
+  validate.editStatus(payload, id);
 
   const recoverDoc = await CategoriesModel.findById(id);
   recoverDoc.status = payload.status;

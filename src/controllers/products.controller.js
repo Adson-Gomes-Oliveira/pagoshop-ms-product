@@ -1,6 +1,6 @@
 const ProductModel = require('../models/products.model');
-const HTTPStatus = require('../../helpers/HTTP.status');
-const validations = require('../validations/products.validations');
+const HTTPStatus = require('../helpers/HTTP.status');
+const validate = require('../validations/products.validations');
 
 const findAll = async (_req, res) => {
   const response = await ProductModel.find().populate('category_id');
@@ -16,22 +16,18 @@ const findOne = async (req, res) => {
 
 const create = async (req, res) => {
   const payload = req.body;
-  const valid = validations.create(payload);
-  if (valid) return res.status(valid.status).send(valid.message);
+  validate.payload(payload);
 
   const response = await ProductModel.create(payload);
-
   return res.status(HTTPStatus.CREATED).json(response);
 }
 
 const edit = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
-  const valid = validations.create(payload);
-  if (valid) return res.status(valid.status).send(valid.message);
+  validate.payload(payload);
 
   const response = await ProductModel.findByIdAndUpdate(id, payload, { new: true });
-
   return res.status(HTTPStatus.OK).json(response);
 }
 
