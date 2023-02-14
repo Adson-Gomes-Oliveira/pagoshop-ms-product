@@ -21,7 +21,7 @@ const edit = (payload) => {
   return null;
 }
 
-const editOne = (payload) => {
+const editStatus = (payload) => {
   const { error } = JOI.object({
     status: JOI.string().pattern(new RegExp('^(active|inactive)$')).required(),
   }).validate(payload);
@@ -33,5 +33,5 @@ const editOne = (payload) => {
 module.exports = {
   create,
   edit,
-  editOne,
+  editStatus,
 }

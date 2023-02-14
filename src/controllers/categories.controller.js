@@ -19,7 +19,7 @@ const create = async (req, res) => {
   const payload = req.body;
   validate.create(payload);
 
-  payload.status = "ativa";
+  payload.status = "active";
   const response = await CategoriesModel.create(payload);
   return res.status(HTTPStatus.CREATED)
     .set('Location', `/api/categories/${response._id}`)
@@ -45,7 +45,7 @@ const editStatus = async (req, res) => {
   const recoverDoc = await CategoriesModel.findById(id);
   recoverDoc.status = payload.status;
 
-  const response = await CategoriesModel.findByIdAndUpdate(id, newDoc, { new: true });
+  const response = await CategoriesModel.findByIdAndUpdate(id, recoverDoc, { new: true });
   return res.status(HTTPStatus.OK)
     .set('Location', `/api/categories/${response._id}`)
     .json(response);

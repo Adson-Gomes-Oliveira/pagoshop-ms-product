@@ -1,6 +1,6 @@
 const { Router } = require('express');
 const categoriesController = require('../controllers/categories.controller');
-const idValidation = require('../helpers/idValidation.middleware');
+const idValidation = require('../middlewares/id.middleware');
 
 const router = Router();
 
