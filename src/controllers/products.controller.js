@@ -3,6 +3,7 @@ const HTTPStatus = require('../helpers/HTTP.status');
 const validate = require('../validations/products.validations');
 
 const findAll = async (_req, res) => {
+  console.log(process.env);
   const response = await ProductModel.find().populate('category_id');
   return res.status(HTTPStatus.OK).json(response);
 }

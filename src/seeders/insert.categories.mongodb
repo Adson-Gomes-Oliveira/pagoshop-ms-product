@@ -1,0 +1,30 @@
+use('ecomm-product');
+db.categories.insertMany([
+  {
+    name: 'CELULARES',
+    status: 'active'
+  },
+  {
+    name: 'MÓVEIS',
+    status: 'active'
+  },
+  {
+    name: 'ELETRODOMÉSTICOS',
+    status: 'active'
+  },
+  {
+    name: 'TV/VIDEO',
+    status: 'active'
+  },
+  {
+    name: 'INOFRMÁTICA',
+    status: 'active'
+  },
+  {
+    name: 'CAMA/MESA/BANHO',
+    status: 'active'
+  },
+]);
+
+use('ecomm-product');
+db.categories.find();
