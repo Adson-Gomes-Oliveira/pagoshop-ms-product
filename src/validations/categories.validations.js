@@ -8,7 +8,6 @@ const create = (payload) => {
   }).validate(payload);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
-  return null;
 }
 
 const edit = (payload) => {
@@ -18,7 +17,6 @@ const edit = (payload) => {
   }).validate(payload);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
-  return null;
 }
 
 const editStatus = (payload) => {
@@ -27,7 +25,6 @@ const editStatus = (payload) => {
   }).validate(payload);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
-  return null;
 }
 
 module.exports = {
