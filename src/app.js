@@ -2,8 +2,8 @@ require('express-async-errors');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
-const routes = require('./routes');
 const swaggerUI = require('swagger-ui-express');
+const routes = require('./routes');
 const swaggerDocument = require('../swagger/products-swagger.json');
 const errorMiddleware = require('./middlewares/error.middleware');
 

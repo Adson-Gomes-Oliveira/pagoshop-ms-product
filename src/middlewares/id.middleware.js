@@ -7,6 +7,6 @@ const validateId = (req, res, next) => {
 
   if (mongoose.isValidObjectId(id)) return next();
   throw customError('Invalid ID !', HTTPStatus.UN_ENTITY);
-}
+};
 
 module.exports = validateId;

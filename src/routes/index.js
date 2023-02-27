@@ -8,4 +8,4 @@ module.exports = {
   categoriesAdminRoutes,
   productsRoutes,
   productsAdminRoutes,
-}
+};
