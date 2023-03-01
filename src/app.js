@@ -1,4 +1,5 @@
 require('express-async-errors');
+const mongoose = require('mongoose');
 const express = require('express');
 const helmet = require('helmet');
 const cors = require('cors');
@@ -8,6 +9,15 @@ const swaggerDocument = require('../swagger/products-swagger.json');
 const errorMiddleware = require('./middlewares/error.middleware');
 
 const app = express();
+
+const USER = process.env.DB_USER || 'root';
+const PASSWORD = process.env.DB_PASSWORD || 'secret';
+const HOST = process.env.DB_HOST || '127.0.0.1';
+const DATABASE = process.env.DB_NAME || 'ecomm-product';
+
+mongoose.connect(`mongodb://${USER}:${PASSWORD}@${HOST}:27017/${DATABASE}?authSource=admin`)
+  .then(() => console.log('MongoDB connected successfully'))
+  .catch((error) => console.error(error));
 
 app.use(express.json());
 app.use(cors());
