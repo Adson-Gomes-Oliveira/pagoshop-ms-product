@@ -49,3 +49,10 @@ db.products.insertMany([
     category_id: "63ee89bef95fa546c7e3b2c0"
   }
 ]);
+
+
+use('ecomm-product');
+db.products.deleteMany({});
+
+use('ecomm-product');
+db.products.find({});

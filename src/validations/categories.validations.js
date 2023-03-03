@@ -13,7 +13,7 @@ const create = (payload) => {
 const edit = (payload) => {
   const { error } = JOI.object({
     name: JOI.string().min(3).pattern(/^[^0-9]/).required(),
-    status: JOI.string().pattern('^(active|inactive)$').required(),
+    status: JOI.string().pattern(/^(active|inactive)$/).required(),
   }).validate(payload);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
@@ -21,7 +21,7 @@ const edit = (payload) => {
 
 const editStatus = (payload) => {
   const { error } = JOI.object({
-    status: JOI.string().pattern('^(active|inactive)$').required(),
+    status: JOI.string().pattern(/^(active|inactive)$/).required(),
   }).validate(payload);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);

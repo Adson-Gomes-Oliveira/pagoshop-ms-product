@@ -29,8 +29,9 @@ const create = async (req, res) => {
 const edit = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
+  console.log(`${req.params} EI moss`);
   validate.edit(payload, id);
-
+  console.log(`${req.params} Foi moss`);
   const response = await CategoriesModel.findByIdAndUpdate(id, payload, { new: true });
   return res.status(HTTPStatus.OK)
     .set('Location', `/api/categories/${response._id}`)

@@ -1,7 +1,7 @@
 const MONGO_ID_MOCK = '537eed02ed345b2e039652d2';
 
 const PRODUCT_MOCK_INSTANCE = {
-  id: '537eed02ed345b2e039652d2',
+  _id: '537eed02ed345b2e039652d2',
   product: 'SAMSUNG GALAXY S20FE',
   description: 'no-desc',
   slug: 'galaxy-s20',
