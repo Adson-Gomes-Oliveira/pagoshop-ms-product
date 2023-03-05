@@ -18,7 +18,7 @@ const findOne = async (id) => {
 
 const create = async (payload) => {
   validate.create(payload);
-  const newPayload = { ...payload, status: 'CREATED' };
+  const newPayload = { ...payload, status: 'active' };
 
   const newCategory = await CategoriesModel.create(newPayload);
   return newCategory;

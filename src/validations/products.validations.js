@@ -2,7 +2,7 @@ const JOI = require('joi');
 const HTTPStatus = require('../helpers/HTTP.status');
 const customError = require('../helpers/error.custom');
 
-const payload = (payloadToValidate) => {
+const create = (payloadToValidate) => {
   const { error } = JOI.object({
     product: JOI.string().min(3).pattern(/^[^0-9]/).required(),
     description: JOI.string().required(),
@@ -16,5 +16,5 @@ const payload = (payloadToValidate) => {
 };
 
 module.exports = {
-  payload,
+  create,
 };
