@@ -1,44 +1,22 @@
-const { GenericContainer, Network } = require('testcontainers');
 const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../src/app');
 const HTTPStatus = require('../../src/helpers/HTTP.status');
+const CategoriesModel = require('../../src/models/categories.model');
 const {
   CATEGORY_MOCK_INSTANCE,
   CATEGORY_MOCK_PAYLOAD,
 } = require('../mocks/categories');
 
 describe('Testing categories CRUD', () => {
-  let mongoContainer = '';
-  let apiContainer = '';
-  let network = '';
-  jest.setTimeout(20000);
-
   beforeAll(async () => {
-    network = await new Network({ name: 'test-categories-ecomm' }).start();
-
-    mongoContainer = await new GenericContainer('mongo:5')
-      .withName('test_mongo_ecomm_categories')
-      .withExposedPorts(27017)
-      .withEnvironment('MONGO_INITDB_ROOT_USERNAME', 'root')
-      .withEnvironment('MONGO_INITDB_ROOT_PASSWORD', 'secret')
-      .withNetworkMode(network.getName())
-      .start();
-
-    apiContainer = await new GenericContainer('ecommerce_product-container')
-      .withExposedPorts(3001)
-      .withEnvironment('DB_HOST', 'test_mongo_ecomm_categories')
-      .withNetworkMode(network.getName())
-      .start();
-
-    await mongoose.connect('mongodb://root:secret@127.0.0.1:27017/test_mongo_ecomm_categories?authSource=admin');
+    await mongoose.connect('mongodb://root:secret@127.0.0.1:27018/test_ecomm_categories?authSource=admin');
+    await CategoriesModel.create({ ...CATEGORY_MOCK_PAYLOAD, status: 'active' });
   });
 
   afterAll(async () => {
+    await CategoriesModel.deleteMany();
     await mongoose.connection.close();
-    await apiContainer.stop();
-    await mongoContainer.stop();
-    await network.stop();
   });
 
   it('GET: A list of categories should be returned', async () => {

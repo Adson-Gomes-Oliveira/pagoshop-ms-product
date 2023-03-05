@@ -1,44 +1,22 @@
-const { GenericContainer, Network } = require('testcontainers');
 const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../src/app');
 const HTTPStatus = require('../../src/helpers/HTTP.status');
+const ProductsModel = require('../../src/models/products.model');
 const {
   PRODUCT_MOCK_INSTANCE,
   PRODUCT_MOCK_PAYLOAD,
 } = require('../mocks/products');
 
 describe('Testing products CRUD', () => {
-  let mongoContainer = '';
-  let apiContainer = '';
-  let network = '';
-  jest.setTimeout(20000);
-
   beforeAll(async () => {
-    network = await new Network({ name: 'test-product-ecomm' }).start();
-
-    mongoContainer = await new GenericContainer('mongo:5')
-      .withName('test_mongo_ecomm_products')
-      .withExposedPorts(27017)
-      .withEnvironment('MONGO_INITDB_ROOT_USERNAME', 'root')
-      .withEnvironment('MONGO_INITDB_ROOT_PASSWORD', 'secret')
-      .withNetworkMode(network.getName())
-      .start();
-
-    apiContainer = await new GenericContainer('ecommerce_product-container')
-      .withExposedPorts(3001)
-      .withEnvironment('DB_HOST', 'test_mongo_ecomm_products')
-      .withNetworkMode(network.getName())
-      .start();
-
-    await mongoose.connect('mongodb://root:secret@127.0.0.1:27017/test_mongo_ecomm_products?authSource=admin');
+    await mongoose.connect('mongodb://root:secret@127.0.0.1:27018/test_ecomm_products?authSource=admin');
+    await ProductsModel.create(PRODUCT_MOCK_PAYLOAD);
   });
 
   afterAll(async () => {
+    await ProductsModel.deleteMany();
     await mongoose.connection.close();
-    await apiContainer.stop();
-    await mongoContainer.stop();
-    await network.stop();
   });
 
   it('GET: A list of products should be returned', async () => {
