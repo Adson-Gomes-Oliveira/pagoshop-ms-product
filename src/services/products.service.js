@@ -15,7 +15,7 @@ const formatList = async (product) => {
 };
 
 const findAll = async () => {
-  const productsList = await ProductsModel.find();
+  const productsList = await ProductsModel.find().populate('category_id');
   return productsList;
 };
 
@@ -25,7 +25,7 @@ const findByOrder = async (payload) => {
 };
 
 const findOne = async (id) => {
-  const product = await ProductsModel.findById(id);
+  const product = await ProductsModel.findById(id).populate('category_id');
   if (!product) return new CustomError('Entity not found', HTTPStatus.NOT_FOUND);
 
   return product;
