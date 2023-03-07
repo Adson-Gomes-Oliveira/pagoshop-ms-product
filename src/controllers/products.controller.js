@@ -6,6 +6,13 @@ const findAll = async (_req, res) => {
   return res.status(HTTPStatus.OK).json(response);
 };
 
+const findByOrder = async (req, res) => {
+  const payload = req.body;
+  const response = await ProductsServices.findByOrder(payload);
+
+  return res.status(HTTPStatus.OK).json(response);
+};
+
 const findOne = async (req, res) => {
   const { id } = req.params;
   const response = await ProductsServices.findOne(id);
@@ -41,6 +48,7 @@ const deleteOne = async (req, res) => {
 
 module.exports = {
   findAll,
+  findByOrder,
   findOne,
   create,
   edit,

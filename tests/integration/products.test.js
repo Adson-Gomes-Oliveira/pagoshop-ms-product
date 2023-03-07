@@ -6,6 +6,7 @@ const ProductsModel = require('../../src/models/products.model');
 const {
   PRODUCT_MOCK_INSTANCE,
   PRODUCT_MOCK_PAYLOAD,
+  PRODUCT_ORDER_MOCK_PAYLOAD,
 } = require('../mocks/products');
 
 describe('Testing products CRUD', () => {
@@ -41,6 +42,26 @@ describe('Testing products CRUD', () => {
     expect(response.body).toHaveProperty('category_id');
     delete response.body._id;
     expect(response.body).toEqual(PRODUCT_MOCK_PAYLOAD);
+  });
+
+  it('POST: A list of products in order format should be returned', async () => {
+    const properties = ['product', 'price', 'quantity'];
+    const responseCreate = await request(app)
+      .post('/api/products')
+      .send(PRODUCT_MOCK_PAYLOAD)
+      .expect(HTTPStatus.CREATED);
+
+    PRODUCT_ORDER_MOCK_PAYLOAD[0].productId = responseCreate.body._id;
+    PRODUCT_ORDER_MOCK_PAYLOAD[1].productId = responseCreate.body._id;
+
+    const response = await request(app)
+      .post('/api/products/order')
+      .send(PRODUCT_ORDER_MOCK_PAYLOAD);
+
+    expect(response.body.length === 2).toBe(true);
+    properties.forEach((prop) => {
+      expect(response.body[0]).toHaveProperty(prop);
+    });
   });
 
   it('PUT: A product should be edited', async () => {

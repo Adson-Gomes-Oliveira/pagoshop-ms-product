@@ -2,12 +2,17 @@ const ProductsServices = require('../../../src/services/products.service');
 const ProductsControllers = require('../../../src/controllers/products.controller');
 const HTTPStatus = require('../../../src/helpers/HTTP.status');
 const {
-  PRODUCT_MOCK_INSTANCE, PRODUCT_MOCK_PAYLOAD,
+  PRODUCT_MOCK_INSTANCE, PRODUCT_MOCK_PAYLOAD, PRODUCT_ORDER_MOCK_PAYLOAD,
 } = require('../../mocks/products');
 
 describe('Testing Products Controllers', () => {
   const request = {};
   const response = {};
+  const RESULT_MOCK = {
+    product: 'SAMSUNG GALAXY S20FE',
+    quantity: PRODUCT_ORDER_MOCK_PAYLOAD[0].quantity,
+    price: PRODUCT_ORDER_MOCK_PAYLOAD[0].actualUnitPrice - PRODUCT_ORDER_MOCK_PAYLOAD[0].discount,
+  };
 
   beforeAll(() => {
     response.status = jest.fn().mockReturnValue(response);
@@ -16,6 +21,7 @@ describe('Testing Products Controllers', () => {
     response.end = jest.fn().mockReturnValue();
 
     jest.spyOn(ProductsServices, 'findAll').mockResolvedValue([PRODUCT_MOCK_INSTANCE]);
+    jest.spyOn(ProductsServices, 'findByOrder').mockResolvedValue([RESULT_MOCK, RESULT_MOCK]);
     jest.spyOn(ProductsServices, 'findOne').mockResolvedValue(PRODUCT_MOCK_INSTANCE);
     jest.spyOn(ProductsServices, 'create').mockResolvedValue(PRODUCT_MOCK_INSTANCE);
     jest.spyOn(ProductsServices, 'update').mockResolvedValue({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
@@ -35,6 +41,13 @@ describe('Testing Products Controllers', () => {
     request.params = PRODUCT_MOCK_INSTANCE._id;
     await ProductsControllers.findOne(request, response);
     expect(response.status).toHaveBeenCalledWith(HTTPStatus.OK);
+  });
+
+  it('POST: When a list of product orders is given the status code 200 must be returned with the correct data', async () => {
+    request.body = [PRODUCT_ORDER_MOCK_PAYLOAD, PRODUCT_MOCK_PAYLOAD];
+    await ProductsControllers.findByOrder(request, response);
+    expect(response.status).toHaveBeenCalledWith(HTTPStatus.OK);
+    expect(response.json).toHaveBeenCalledWith([RESULT_MOCK, RESULT_MOCK]);
   });
 
   it('POST: When a product is created the status code 201 must be returned with the correct data', async () => {
