@@ -7,7 +7,7 @@ const PRODUCT_MOCK_INSTANCE = {
   slug: 'galaxy-s20',
   unit_price: 1999.99,
   quantity: 10,
-  category_id: {
+  category: {
     name: 'SMARTPHONE',
     status: 'active',
   },
@@ -19,7 +19,7 @@ const PRODUCT_MOCK_PAYLOAD = {
   slug: 'galaxy-s20',
   unit_price: 1999.99,
   quantity: 10,
-  category_id: '551137c2f9e1fac808a5f572',
+  category: '551137c2f9e1fac808a5f572',
 };
 
 const PRODUCT_ORDER_MOCK_PAYLOAD = [

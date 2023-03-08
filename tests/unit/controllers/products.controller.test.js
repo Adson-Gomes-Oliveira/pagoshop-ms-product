@@ -60,7 +60,7 @@ describe('Testing Products Controllers', () => {
   it('PUT: When a product is updated the status code 200 must be returned with the correct data', async () => {
     request.params = PRODUCT_MOCK_INSTANCE._id;
     request.body = { ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' };
-    await ProductsControllers.edit(request, response);
+    await ProductsControllers.update(request, response);
     expect(response.status).toHaveBeenCalledWith(HTTPStatus.OK);
     expect(response.json).toHaveBeenCalledWith({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
   });

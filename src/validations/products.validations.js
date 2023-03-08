@@ -9,7 +9,7 @@ const create = (payloadToValidate) => {
     slug: JOI.string().pattern(/^[a-zA-Z0-9-]+$/).required(),
     unit_price: JOI.number().required(),
     quantity: JOI.number().min(1).max(10000).required(),
-    category_id: JOI.string().required(),
+    category: JOI.string().required(),
   }).validate(payloadToValidate);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);

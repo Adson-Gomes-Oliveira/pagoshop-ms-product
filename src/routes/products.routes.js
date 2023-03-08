@@ -1,14 +1,14 @@
 const { Router } = require('express');
-const productController = require('../controllers/products.controller');
+const productsController = require('../controllers/products.controller');
 const idValidation = require('../middlewares/id.middleware');
 
 const router = Router();
 
-router.get('/', productController.findAll);
-router.get('/:id', productController.findOne);
-router.post('/order', productController.findByOrder);
-router.post('/', productController.create);
-router.put('/:id', idValidation, productController.edit);
-router.delete('/:id', idValidation, productController.deleteOne);
+router.get('/', productsController.findAll);
+router.get('/:id', productsController.findOne);
+router.post('/order', productsController.findByOrder);
+router.post('/', productsController.create);
+router.put('/:id', idValidation, productsController.update);
+router.delete('/:id', idValidation, productsController.deleteOne);
 
 module.exports = router;

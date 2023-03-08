@@ -29,7 +29,7 @@ const create = async (req, res) => {
     .json(response);
 };
 
-const edit = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
 
@@ -51,6 +51,6 @@ module.exports = {
   findByOrder,
   findOne,
   create,
-  edit,
+  update,
   deleteOne,
 };

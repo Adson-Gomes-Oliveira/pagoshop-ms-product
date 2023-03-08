@@ -7,7 +7,7 @@ const productsMongooseSchema = new mongoose.Schema({
   slug: { type: String, required: true },
   unit_price: { type: Number, required: true },
   quantity: { type: Number, required: true },
-  category_id: { type: mongoose.Schema.Types.ObjectId, ref: 'categories', required: true },
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'categories', required: true },
 }, { versionKey: false });
 
 const ProductsModel = mongoose.model('products', productsMongooseSchema);

@@ -22,7 +22,7 @@ const create = async (req, res) => {
     .json(response);
 };
 
-const edit = async (req, res) => {
+const update = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
 
@@ -32,7 +32,7 @@ const edit = async (req, res) => {
     .json(response);
 };
 
-const editStatus = async (req, res) => {
+const updateStatus = async (req, res) => {
   const { id } = req.params;
   const payload = req.body;
 
@@ -53,7 +53,7 @@ module.exports = {
   findAll,
   findOne,
   create,
-  edit,
-  editStatus,
+  update,
+  updateStatus,
   deleteOne,
 };

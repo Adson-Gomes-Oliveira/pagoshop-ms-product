@@ -10,7 +10,7 @@ const create = (payload) => {
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
 };
 
-const edit = (payload) => {
+const update = (payload) => {
   const { error } = JOI.object({
     name: JOI.string().min(3).pattern(/^[^0-9]/).required(),
     status: JOI.string().pattern(/^(active|inactive)$/).required(),
@@ -19,7 +19,7 @@ const edit = (payload) => {
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
 };
 
-const editStatus = (payload) => {
+const updateStatus = (payload) => {
   const { error } = JOI.object({
     status: JOI.string().pattern(/^(active|inactive)$/).required(),
   }).validate(payload);
@@ -29,6 +29,6 @@ const editStatus = (payload) => {
 
 module.exports = {
   create,
-  edit,
-  editStatus,
+  update,
+  updateStatus,
 };

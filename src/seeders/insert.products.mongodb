@@ -6,7 +6,7 @@ db.products.insertMany([
     slug: "iphone-11",
     unit_price: 2969.99,
     quantity: 10,
-    category_id: "63ee89bef95fa546c7e3b2bb"
+    category: "63ee89bef95fa546c7e3b2bb"
   },
   {
     product: "Notebook Lenovo Ideapad 3i Intel Core i3 4GB - 256GB SSD 15,6” Full HD Windows 11 82MD000ABR",
@@ -14,7 +14,7 @@ db.products.insertMany([
     slug: "ideapad-3i",
     unit_price: 2519.10,
     quantity: 10,
-    category_id: "63ee89bef95fa546c7e3b2bf"
+    category: "63ee89bef95fa546c7e3b2bf"
   },
   {
     product: "Sofá Retrátil e Reclinável Cama inBox Compact 1,50m Tecido Suede Velusoft Cinza",
@@ -22,7 +22,7 @@ db.products.insertMany([
     slug: "sofa-inbox-compact",
     unit_price: 849.90,
     quantity: 10,
-    category_id: "63ee89bef95fa546c7e3b2bc"
+    category: "63ee89bef95fa546c7e3b2bc"
   },
   {
     product: "Fogão 4 Bocas Atlas Mônaco Top Glass Acendimento Automático",
@@ -30,7 +30,7 @@ db.products.insertMany([
     slug: "fogao-atlas-monaco",
     unit_price: 799.53,
     quantity: 10,
-    category_id: "63ee89bef95fa546c7e3b2bd"
+    category: "63ee89bef95fa546c7e3b2bd"
   },
   {
     product: "Smart TV LED 32 HQ HD com Conversor Digital Externo 3 HDMI 2 USB WI-FI Android 11 Design Slim",
@@ -38,7 +38,7 @@ db.products.insertMany([
     slug: "smart-tv-hq-hd",
     unit_price: 1029,
     quantity: 10,
-    category_id: "63ee89bef95fa546c7e3b2be"
+    category: "63ee89bef95fa546c7e3b2be"
   },
   {
     product: "Kit Com 04 Toalhas De Banho Gigante / Banhão Quasar - Verde/Rosa/Cinza/Azul - 75x150cm - LMpeter",
@@ -46,7 +46,7 @@ db.products.insertMany([
     slug: "toalhas-kit-gigante",
     unit_price: 149.72,
     quantity: 10,
-    category_id: "63ee89bef95fa546c7e3b2c0"
+    category: "63ee89bef95fa546c7e3b2c0"
   }
 ]);
 

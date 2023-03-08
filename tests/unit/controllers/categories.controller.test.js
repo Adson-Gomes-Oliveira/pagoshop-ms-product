@@ -48,7 +48,7 @@ describe('Testing Categories Controllers', () => {
   it('PUT: When a category is updated the status code 200 must be returned with the correct data', async () => {
     request.params = CATEGORY_MOCK_INSTANCE._id;
     request.body = { ...CATEGORY_MOCK_INSTANCE, name: 'ELETRO' };
-    await CategoriesControllers.edit(request, response);
+    await CategoriesControllers.update(request, response);
     expect(response.status).toHaveBeenCalledWith(HTTPStatus.OK);
     expect(response.json).toHaveBeenCalledWith({ ...CATEGORY_MOCK_INSTANCE, name: 'ELETRO' });
   });
@@ -56,7 +56,7 @@ describe('Testing Categories Controllers', () => {
   it('PATCH: When a category status is updated the status code 200 must be returned with the correct status data', async () => {
     request.params = CATEGORY_MOCK_INSTANCE._id;
     request.body = { status: 'inactive' };
-    await CategoriesControllers.editStatus(request, response);
+    await CategoriesControllers.updateStatus(request, response);
     expect(response.status).toHaveBeenCalledWith(HTTPStatus.OK);
     expect(response.json).toHaveBeenCalledWith({ status: 'inactive' });
   });

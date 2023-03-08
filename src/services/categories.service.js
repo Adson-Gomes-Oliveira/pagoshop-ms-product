@@ -25,14 +25,14 @@ const create = async (payload) => {
 };
 
 const update = async (id, payload) => {
-  validate.edit(payload, id);
+  validate.update(payload, id);
 
   const categoryUpdated = await CategoriesModel.findByIdAndUpdate(id, payload, { new: true });
   return categoryUpdated;
 };
 
 const updateStatus = async (id, payload) => {
-  validate.editStatus(payload, id);
+  validate.updateStatus(payload, id);
 
   const previousCategoryDataToUpdate = await CategoriesModel.findById(id);
   previousCategoryDataToUpdate.status = payload.status;
