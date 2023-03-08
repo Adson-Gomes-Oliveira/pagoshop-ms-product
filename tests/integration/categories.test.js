@@ -6,7 +6,7 @@ const CategoriesModel = require('../../src/models/categories.model');
 const {
   CATEGORY_MOCK_INSTANCE,
   CATEGORY_MOCK_PAYLOAD,
-} = require('../mocks/categories');
+} = require('../mocks/categories.mock');
 
 describe('Testing categories CRUD', () => {
   beforeAll(async () => {

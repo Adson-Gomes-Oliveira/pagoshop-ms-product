@@ -3,7 +3,7 @@ const CategoriesControllers = require('../../../src/controllers/categories.contr
 const HTTPStatus = require('../../../src/helpers/HTTP.status');
 const {
   CATEGORY_MOCK_INSTANCE, CATEGORY_MOCK_PAYLOAD,
-} = require('../../mocks/categories');
+} = require('../../mocks/categories.mock');
 
 describe('Testing Categories Controllers', () => {
   const request = {};

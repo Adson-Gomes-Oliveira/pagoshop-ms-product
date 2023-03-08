@@ -2,7 +2,7 @@ const ProductsModel = require('../../../src/models/products.model');
 const ProductServices = require('../../../src/services/products.service');
 const {
   PRODUCT_MOCK_INSTANCE, PRODUCT_MOCK_PAYLOAD, PRODUCT_ORDER_MOCK_PAYLOAD,
-} = require('../../mocks/products');
+} = require('../../mocks/products.mock');
 
 describe('Testing Products Services', () => {
   beforeAll(() => {

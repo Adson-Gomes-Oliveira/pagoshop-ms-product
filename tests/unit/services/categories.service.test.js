@@ -2,7 +2,7 @@ const CategoriesModel = require('../../../src/models/categories.model');
 const CategoriesServices = require('../../../src/services/categories.service');
 const {
   CATEGORY_MOCK_INSTANCE, CATEGORY_MOCK_PAYLOAD,
-} = require('../../mocks/categories');
+} = require('../../mocks/categories.mock');
 
 describe('Testing Products Services', () => {
   beforeAll(() => {
