@@ -4,6 +4,7 @@ const PRODUCT_MOCK_INSTANCE = {
   _id: '537eed02ed345b2e039652d2',
   product: 'SAMSUNG GALAXY S20FE',
   description: 'no-desc',
+  thumbnail: 'https://image.com/image.png',
   slug: 'galaxy-s20',
   unit_price: 1999.99,
   quantity: 10,
@@ -16,6 +17,7 @@ const PRODUCT_MOCK_INSTANCE = {
 const PRODUCT_MOCK_PAYLOAD = {
   product: 'SAMSUNG GALAXY S20FE',
   description: 'no-desc',
+  thumbnail: 'https://image.com/image.png',
   slug: 'galaxy-s20',
   unit_price: 1999.99,
   quantity: 10,

@@ -3,50 +3,56 @@ db.products.insertMany([
   {
     product: "iPhone 11 Apple 64GB (PRODUCT)RED 6,1” 12MP iOS",
     description: "Grave vídeos 4K, faça belos retratos e capture paisagens inteiras com o novo sistema de câmera dupla. Tire fotos incríveis com pouca luz usando o modo Noite. Veja cores fiéis em fotos, vídeos e jogos na tela Liquid Retina de 6,1 polegadas***. Leve o desempenho sem precedentes do chip A13 Bionic para seus games, realidade aumentada e fotografia. Faça muito e recarregue pouco com a bateria para o dia todo**. E conte com resistência à água de até dois metros por até 30 minutos*.Avisos legais:*O iPhone 11 é resistente a respingos, água e poeira e foi testado em condições controladas em laboratório, classificado como IP68 segundo a norma IEC 60529 (profundidade máxima de até dois metros por até 30 minutos). A resistência a respingos, água e poeira não é uma condição permanente e pode diminuir com o tempo. Não tente recarregar um iPhone molhado. Veja instruções no Manual do Usuário para limpeza e secagem. Danos decorrentes de contato com líquidos não estão incluídos na garantia.**A duração da bateria varia de acordo com o uso e a configuração. Consulte o site do fabricante para obter mais informações.***A tela tem cantos arredondados. Quando medida como um retângulo, a tela do iPhone 11 tem 6,06 polegadas na diagonal. A área real de visualização é menor.****Carregadores sem fio padrão Qi vendidos separadamente.*****Como parte dos esforços da Apple para atingir seus objetivos ambientais, o iPhone 11 não vem com adaptador de energia nem EarPods. Você pode usar o adaptador de energia e os fones de ouvido da Apple que já tenha ou comprar esses acessórios separadamente.",
+    thumbnail: "https://imgs.casasbahia.com.br/55014771/1xg.jpg?imwidth=500",
     slug: "iphone-11",
     unit_price: 2969.99,
     quantity: 10,
-    category: "63ee89bef95fa546c7e3b2bb"
+    category: "6403e89539aa92d91a882df3"
   },
   {
     product: "Notebook Lenovo Ideapad 3i Intel Core i3 4GB - 256GB SSD 15,6” Full HD Windows 11 82MD000ABR",
     description: "Você procura um notebook potente para o dia a dia? Confira o IdeaPad 3i 82MD000ABR da Lenovo. Ele tem tela LCD Full HD de 15,6, conta com o processador Intel Core i3 1115G4 da 11ª geração, sistema operacional Windows 11 e memória RAM de 4GB. Os detalhes de design bem pensados, como o obturador de privacidade de webcam e câmera de alta resolução HD-720p, completam o quadro. Com capacidade de 256GB de SSD, você terá espaço suficiente para seus arquivos. Pesando apenas 1,65kg, pode ser levado com você para onde quiser.",
+    thumbnail: "https://a-static.mlcdn.com.br/800x560/notebook-lenovo-ideapad-3i-intel-core-i3-tela-15-6-full-hd-4gb-ddr4-256gb-ssd-windows-11-cinza-82md000abr/lojaibyte/100018722/9829487ae2ff1d48aa4d9bcaa0d0bf0f.jpeg",
     slug: "ideapad-3i",
     unit_price: 2519.10,
     quantity: 10,
-    category: "63ee89bef95fa546c7e3b2bf"
+    category: "6403e89539aa92d91a882df7"
   },
   {
     product: "Sofá Retrátil e Reclinável Cama inBox Compact 1,50m Tecido Suede Velusoft Cinza",
     description: "Ideal para ambientes compactos e sofisticados, o Sofá Cama inBox Compact de 2 lugares irá renovar a beleza da sua sala, assim como trazer muito conforto para você. Feito para espaços compactos, ele é aconchegante e possui um design que vai elevar a decoração da sua sala para outro nível. Ele conta com Sistema Retrátil Open-All, onde os assentos abrem e fecham unificados. Sua procura pelo sofá perfeito acabou, adquira já o seu!",
+    thumbnail: "https://m.media-amazon.com/images/I/61rELvRBZSL._AC_SX466_.jpg",
     slug: "sofa-inbox-compact",
     unit_price: 849.90,
     quantity: 10,
-    category: "63ee89bef95fa546c7e3b2bc"
+    category: "6403e89539aa92d91a882df4"
   },
   {
     product: "Fogão 4 Bocas Atlas Mônaco Top Glass Acendimento Automático",
     description: "Se você deseja eficiência e modernidade em sua cozinha, o Fogão Mônaco Top Glass, da Atlas, é a opção certa! Com materiais de alta qualidade e durabilidade, é um produto diferenciado no mercado.",
+    thumbnail: "https://m.media-amazon.com/images/I/51clOvHWWLL._AC_SX522_.jpg",
     slug: "fogao-atlas-monaco",
     unit_price: 799.53,
     quantity: 10,
-    category: "63ee89bef95fa546c7e3b2bd"
+    category: "6403e89539aa92d91a882df5"
   },
   {
     product: "Smart TV LED 32 HQ HD com Conversor Digital Externo 3 HDMI 2 USB WI-FI Android 11 Design Slim",
     description: "Desfrute do HDR. Imagens com cores vivas e incríveis. Assista vídeos em resolução HD com uma excelente qualidade de imagem. O sistema HDR “High Dynamic Range”, presente na Smart TV HQ HQSTV32NK, é responsável pela quantidade de cores que cada pixel pode assumir. Esse formato é capaz de deixar a imagem do televisor com excelente resultado de brilho e contraste, já que as imagens ficam com cores mais vivas, os tons mais claros possuem mais brilho e os tons pretos, mais contraste. O resultado são imagens mais realistas e uma melhor experiência para o espectador!",
+    thumbnail: "https://cdn.leroymerlin.com.br/products/tv_led_32_hq_hqtv32_resolucao_hd_com_conversor_digital_2_hdm_1568255407_d97c_600x600.jpg",
     slug: "smart-tv-hq-hd",
     unit_price: 1029,
     quantity: 10,
-    category: "63ee89bef95fa546c7e3b2be"
+    category: "6403e89539aa92d91a882df6"
   },
   {
     product: "Kit Com 04 Toalhas De Banho Gigante / Banhão Quasar - Verde/Rosa/Cinza/Azul - 75x150cm - LMpeter",
     description: "Conteúdo e medidas: 04 Toalhas de Banho 75 x 150cm Peso Unitário aproximado: 450gGramatura: 400g/m2Composição: 100% Algodão (exceto efeito decorativo)Cor: Verde/Rosa/Cinza/AzulMarca: LMPeterModelo: QuasarFabricante: Tecelagem LMCor e peso das toalhas podem ter uma pequena variação dependendo do lote do produto.Instruções de Lavagem: Lave as peças em água fria e sem amaciante pelo menos nas três primeiras lavagens. Não misture toalhas de cores claras com cores escuras. Evite o uso de amaciante e alvejantes. Use preferencialmente sabão líquido.Todas as informações divulgadas são de responsabilidade do fabricante/fornecedorImagens Meramente Ilustrativas.",
+    thumbnail: "https://a-static.mlcdn.com.br/800x560/kit-com-04-toalhas-de-banho-gigante-banhao-quasar-verde-rosa-cinza-azul-75x150cm-lmpeter/marbelytoalhas/581p/4d94b46d47449ffdf02caeaf357bd00d.jpg",
     slug: "toalhas-kit-gigante",
     unit_price: 149.72,
     quantity: 10,
-    category: "63ee89bef95fa546c7e3b2c0"
+    category: "6403e89539aa92d91a882df8"
   }
 ]);
 
