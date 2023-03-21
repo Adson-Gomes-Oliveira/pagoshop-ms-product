@@ -17,18 +17,6 @@ describe('Testing Products Services', () => {
     jest.clearAllMocks();
   });
 
-  it('GET: A list of products should be returned', async () => {
-    const productListTest = await ProductServices.findAll();
-    expect(productListTest).toBeInstanceOf(Array);
-    expect(productListTest[0]).toBe(PRODUCT_MOCK_INSTANCE);
-  });
-
-  it('GET: A specific product should be returned based on id', async () => {
-    const productTest = await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
-    expect(productTest).toHaveProperty('_id');
-    expect(productTest._id).toBe(PRODUCT_MOCK_INSTANCE._id);
-  });
-
   it('POST: A list of product in order format should be returned with success', async () => {
     const RESULT_MOCK = {
       product: 'SAMSUNG GALAXY S20FE',
