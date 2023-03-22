@@ -42,7 +42,6 @@ describe('Testing products CRUD', () => {
   });
 
   it('POST: A product should be created', async () => {
-    console.log(token);
     const response = await request(app)
       .post('/api/products')
       .set('Authorization', token)

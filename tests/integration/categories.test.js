@@ -1,3 +1,4 @@
+const axios = require('axios');
 const mongoose = require('mongoose');
 const request = require('supertest');
 const app = require('../../src/app');
@@ -9,9 +10,17 @@ const {
 } = require('../mocks/categories.mock');
 
 describe('Testing categories CRUD', () => {
+  let token = '';
   beforeAll(async () => {
     await mongoose.connect('mongodb://root:secret@127.0.0.1:27018/test_ecomm_categories?authSource=admin');
     await CategoriesModel.create({ ...CATEGORY_MOCK_PAYLOAD, status: 'active' });
+
+    const response = await axios.post('http://127.0.0.1:3002/api/accounts/login', {
+      email: 'adsongoliveira2022@outlook.com',
+      password: '@Raven132pp87',
+    });
+
+    token = response.headers.authorization;
   });
 
   afterAll(async () => {
@@ -34,6 +43,7 @@ describe('Testing categories CRUD', () => {
   it('POST: A category should be created', async () => {
     const response = await request(app)
       .post('/api/categories')
+      .set('Authorization', token)
       .send(CATEGORY_MOCK_PAYLOAD)
       .expect(HTTPStatus.CREATED);
 
@@ -51,11 +61,13 @@ describe('Testing categories CRUD', () => {
 
     const responsePost = await request(app)
       .post('/api/categories')
+      .set('Authorization', token)
       .send(CATEGORY_MOCK_PAYLOAD)
       .expect(HTTPStatus.CREATED);
 
     const responsePut = await request(app)
       .put(`/api/categories/${responsePost.body._id}`)
+      .set('Authorization', token)
       .send(NEW_CATEGORY_MOCK_PAYLOAD)
       .expect(HTTPStatus.OK);
 
@@ -73,11 +85,13 @@ describe('Testing categories CRUD', () => {
 
     const responsePost = await request(app)
       .post('/api/categories')
+      .set('Authorization', token)
       .send(CATEGORY_MOCK_PAYLOAD)
       .expect(HTTPStatus.CREATED);
 
     const responsePatch = await request(app)
       .patch(`/api/categories/${responsePost.body._id}`)
+      .set('Authorization', token)
       .send(NEW_CATEGORY_MOCK_PAYLOAD)
       .expect(HTTPStatus.OK);
 
@@ -90,11 +104,13 @@ describe('Testing categories CRUD', () => {
   it('DELETE: A category should be deleted', async () => {
     const response = await request(app)
       .post('/api/categories')
+      .set('Authorization', token)
       .send(CATEGORY_MOCK_PAYLOAD)
       .expect(HTTPStatus.CREATED);
 
     await request(app)
       .delete(`/api/categories/${response.body._id}`)
+      .set('Authorization', token)
       .expect(HTTPStatus.NO_CONTENT);
   });
 });

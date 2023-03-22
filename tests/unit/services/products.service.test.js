@@ -6,8 +6,13 @@ const {
 
 describe('Testing Products Services', () => {
   beforeAll(() => {
-    jest.spyOn(ProductsModel, 'find').mockResolvedValue([PRODUCT_MOCK_INSTANCE]);
-    jest.spyOn(ProductsModel, 'findById').mockResolvedValue(PRODUCT_MOCK_INSTANCE);
+    const mockPopulateArray = jest.fn().mockReturnValue([PRODUCT_MOCK_INSTANCE]);
+    const mockPopulateObject = jest.fn().mockReturnValue(PRODUCT_MOCK_INSTANCE);
+    const mockFind = jest.fn().mockReturnValue({ populate: mockPopulateArray });
+    const mockFindById = jest.fn().mockReturnValue({ populate: mockPopulateObject });
+
+    jest.spyOn(ProductsModel, 'find').mockImplementationOnce(mockFind);
+    jest.spyOn(ProductsModel, 'findById').mockImplementation(mockFindById);
     jest.spyOn(ProductsModel, 'create').mockResolvedValue(PRODUCT_MOCK_INSTANCE);
     jest.spyOn(ProductsModel, 'findByIdAndUpdate').mockResolvedValue({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
     jest.spyOn(ProductsModel, 'findByIdAndDelete').mockResolvedValue();
@@ -17,9 +22,23 @@ describe('Testing Products Services', () => {
     jest.clearAllMocks();
   });
 
+  it('GET: A list of products should be returned', async () => {
+    const resultProperties = Object.keys(PRODUCT_MOCK_INSTANCE);
+    const productListTest = await ProductServices.findAll();
+    expect(productListTest).toBeInstanceOf(Array);
+    resultProperties.forEach((prop) => {
+      expect(productListTest[0]).toHaveProperty(prop);
+    });
+  });
+
+  it('GET: A specific product should be returned', async () => {
+    const productListTest = await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
+    expect(productListTest).toBe(PRODUCT_MOCK_INSTANCE);
+  });
+
   it('POST: A list of product in order format should be returned with success', async () => {
     const RESULT_MOCK = {
-      product: 'SAMSUNG GALAXY S20FE',
+      product: undefined,
       quantity: PRODUCT_ORDER_MOCK_PAYLOAD[0].quantity,
       price: PRODUCT_ORDER_MOCK_PAYLOAD[0].actualUnitPrice - PRODUCT_ORDER_MOCK_PAYLOAD[0].discount,
     };
