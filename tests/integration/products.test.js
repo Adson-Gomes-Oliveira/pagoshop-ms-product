@@ -66,6 +66,7 @@ describe('Testing products CRUD', () => {
 
     const response = await request(app)
       .post('/api/products/order')
+      .set('Authorization', token)
       .send(PRODUCT_ORDER_MOCK_PAYLOAD);
 
     expect(response.body.length === 2).toBe(true);
@@ -108,6 +109,7 @@ describe('Testing products CRUD', () => {
 
     await request(app)
       .delete(`/api/products/${response.body._id}`)
+      .set('Authorization', token)
       .expect(HTTPStatus.NO_CONTENT);
   });
 });
