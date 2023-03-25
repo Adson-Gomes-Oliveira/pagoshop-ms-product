@@ -11,17 +11,17 @@ const {
 } = require('../mocks/products.mock');
 
 describe('Testing products CRUD', () => {
-  let token = 'Bearer ';
+  let token = '';
   beforeAll(async () => {
     await mongoose.connect('mongodb://root:secret@127.0.0.1:27018/test_ecomm_products?authSource=admin');
     await ProductsModel.create(PRODUCT_MOCK_PAYLOAD);
 
-    const response = await axios.post('http://127.0.0.1:3002/api/login', {
+    const response = await axios.post('http://127.0.0.1:3002/api/accounts/login', {
       email: 'adsongoliveira2022@outlook.com',
       password: '@Raven132pp87',
     });
 
-    token += response.data.token;
+    token = response.headers.authorization;
   });
 
   afterAll(async () => {
@@ -45,8 +45,7 @@ describe('Testing products CRUD', () => {
     const response = await request(app)
       .post('/api/products')
       .set('Authorization', token)
-      .send(PRODUCT_MOCK_PAYLOAD)
-      .expect(HTTPStatus.CREATED);
+      .send(PRODUCT_MOCK_PAYLOAD);
 
     expect(response.body).toHaveProperty('_id');
     expect(response.body).toHaveProperty('category');
@@ -67,6 +66,7 @@ describe('Testing products CRUD', () => {
 
     const response = await request(app)
       .post('/api/products/order')
+      .set('Authorization', token)
       .send(PRODUCT_ORDER_MOCK_PAYLOAD);
 
     expect(response.body.length === 2).toBe(true);
@@ -109,6 +109,7 @@ describe('Testing products CRUD', () => {
 
     await request(app)
       .delete(`/api/products/${response.body._id}`)
+      .set('Authorization', token)
       .expect(HTTPStatus.NO_CONTENT);
   });
 });

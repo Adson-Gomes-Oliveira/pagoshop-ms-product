@@ -1,8 +1,8 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Ecommerce Products - OpenAPI 3.0",
-    "description": "API do Ecommerce desenvolvido durante o curso da Alura.",
+    "title": "Ecommerce PagoShop - Products & Categories",
+    "description": "API do Ecommerce PagoShop, veja a documentação em [Ecommerce Repo Docs](https://github.com/Adson-Gomes-Oliveira/Ecommerce).",
     "contact": {
       "email": "adsongoliveira2022@outlook.com",
       "name": "Desenvolvedor"
@@ -11,7 +11,7 @@
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
     },
-    "version": "0.0.1"
+    "version": "1.0.0"
   },
   "servers": [
     {
@@ -50,14 +50,17 @@
             "$ref": "#/components/responses/NotFound"
           }
         }
-      }
-    },
-    "/api/admin/categories": {
+      },
       "post": {
         "tags": [
           "categories"
         ],
         "summary": "Cria uma nova categoria",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -70,7 +73,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successfully Created",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -123,14 +126,17 @@
             "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
-      }
-    },
-    "/api/admin/categories/{id}": {
+      },
       "put": {
         "tags": [
           "categories"
         ],
         "summary": "Alterar uma categoria",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/IdParam"
@@ -147,7 +153,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully Edited",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -175,6 +181,11 @@
           "categories"
         ],
         "summary": "Ativar categoria",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/IdParam"
@@ -191,7 +202,7 @@
         },
         "responses": {
           "201": {
-            "description": "Successfully Activated",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -219,6 +230,11 @@
           "categories"
         ],
         "summary": "Deletar categoria",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/IdParam"
@@ -226,48 +242,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successfully Deleted"
-          },
-          "400": {
-            "$ref": "#/components/responses/BadRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/Unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/NotFound"
-          },
-          "422": {
-            "$ref": "#/components/responses/UnprocessableEntity"
-          }
-        }
-      }
-    },
-    "/api/admin/products/": {
-      "post": {
-        "tags": [
-          "products"
-        ],
-        "summary": "Adicionar um novo produto ao Ecommerce",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/ProductPost"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successfully Created",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Product"
-                }
-              }
-            }
+            "description": "Success"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -325,6 +300,50 @@
             "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
+      },
+      "post": {
+        "tags": [
+          "products"
+        ],
+        "summary": "Adicionar um novo produto ao Ecommerce",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ProductPost"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Product"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/BadRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/Unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/NotFound"
+          },
+          "422": {
+            "$ref": "#/components/responses/UnprocessableEntity"
+          }
+        }
       }
     },
     "/api/products/{id}": {
@@ -359,14 +378,17 @@
             "$ref": "#/components/responses/UnprocessableEntity"
           }
         }
-      }
-    },
-    "/api/admin/products/{id}": {
+      },
       "put": {
         "tags": [
           "products"
         ],
         "summary": "Alterar um produto",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/IdParam"
@@ -383,7 +405,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully Edited",
+            "description": "Success",
             "content": {
               "application/json": {
                 "schema": {
@@ -411,6 +433,11 @@
           "products"
         ],
         "summary": "Deletar um produto",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "$ref": "#/components/parameters/IdParam"
@@ -418,7 +445,7 @@
         ],
         "responses": {
           "204": {
-            "description": "Successfully Deleted"
+            "description": "Success"
           },
           "400": {
             "$ref": "#/components/responses/BadRequest"
@@ -437,6 +464,13 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    },
     "schemas": {
       "Categories": {
         "type": "array",

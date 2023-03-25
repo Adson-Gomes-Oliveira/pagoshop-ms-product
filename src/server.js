@@ -11,7 +11,7 @@ const HOST = process.env.DB_HOST || '127.0.0.1';
 const DATABASE = process.env.DB_NAME || 'ecomm-product';
 
 mongoose.connect(`mongodb://${USER}:${PASSWORD}@${HOST}:27017/${DATABASE}?authSource=admin`)
-  .then(() => console.log('MongoDB connected successfully'))
+  .then(() => {})
   .catch((error) => console.error(error));
 
 app.listen(PORT, () => console.log(`Server is listening on port: ${PORT}`));
