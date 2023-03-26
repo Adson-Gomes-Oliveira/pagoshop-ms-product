@@ -16,8 +16,8 @@ describe('Testing categories CRUD', () => {
     await CategoriesModel.create({ ...CATEGORY_MOCK_PAYLOAD, status: 'active' });
 
     const response = await axios.post('http://127.0.0.1:3002/api/accounts/login', {
-      email: 'adsongoliveira2022@outlook.com',
-      password: '@Raven132pp87',
+      email: 'danilo@example.com',
+      password: '@Danilo777Password',
     });
 
     token = response.headers.authorization;
