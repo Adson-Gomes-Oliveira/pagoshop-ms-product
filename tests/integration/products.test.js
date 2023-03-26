@@ -11,7 +11,6 @@ const {
 } = require('../mocks/products.mock');
 
 describe('Testing products CRUD', () => {
-  jest.setTimeout(10000);
   let token = '';
   beforeAll(async () => {
     await mongoose.connect('mongodb://root:secret@127.0.0.1:27018/test_ecomm_products?authSource=admin');
