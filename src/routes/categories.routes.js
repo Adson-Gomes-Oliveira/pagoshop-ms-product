@@ -1,16 +1,13 @@
 const { Router } = require('express');
-const passport = require('passport');
 const categoriesController = require('../controllers/categories.controller');
-const idValidation = require('../middlewares/id.middleware');
 
 const router = Router();
 
 router.get('/', categoriesController.findAll);
-router.get('/:id', idValidation, categoriesController.findOne);
-router.use(passport.authenticate('bearer', { session: false }));
+router.get('/:id', categoriesController.findOne);
 router.post('/', categoriesController.create);
-router.put('/:id', idValidation, categoriesController.update);
-router.patch('/:id', idValidation, categoriesController.updateStatus);
-router.delete('/:id', idValidation, categoriesController.deleteOne);
+router.put('/:id', categoriesController.update);
+router.patch('/:id', categoriesController.updateStatus);
+router.delete('/:id', categoriesController.deleteOne);
 
 module.exports = router;

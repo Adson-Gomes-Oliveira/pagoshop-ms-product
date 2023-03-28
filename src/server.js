@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 const mongoose = require('mongoose');
 const app = require('./app');
-require('dotenv/config');
+require('dotenv').config();
 
 const PORT = process.env.PORT || 3001;
 
