@@ -1,4 +1,4 @@
-use('ecomm-product');
+use('ms-product');
 db.categories.insertMany([
   {
     name: 'CELULARES',
@@ -26,5 +26,5 @@ db.categories.insertMany([
   },
 ]);
 
-use('ecomm-product');
+use('ms-product');
 db.categories.find();

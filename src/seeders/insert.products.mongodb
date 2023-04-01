@@ -1,4 +1,4 @@
-use('ecomm-product');
+use('ms-product');
 db.products.insertMany([
   {
     product: "iPhone 11 Apple 64GB (PRODUCT)RED 6,1” 12MP iOS",

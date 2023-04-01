@@ -37,3 +37,8 @@ services:
 
 volumes:
   mongodb-product-volume-docker:
+
+networks: 
+  default:
+    name: trooper-network
+    external: true
