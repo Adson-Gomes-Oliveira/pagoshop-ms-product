@@ -1,30 +1,33 @@
 use('ms-product');
 db.categories.insertMany([
   {
-    name: 'CELULARES',
+    name: 'Figures',
     status: 'active'
   },
   {
-    name: 'MÓVEIS',
+    name: 'Moda',
     status: 'active'
   },
   {
-    name: 'ELETRODOMÉSTICOS',
+    name: 'Eletrônicos',
     status: 'active'
   },
   {
-    name: 'TV/VIDEO',
+    name: 'Assinaturas',
     status: 'active'
   },
   {
-    name: 'INOFRMÁTICA',
+    name: 'Sorteios',
     status: 'active'
   },
   {
-    name: 'CAMA/MESA/BANHO',
+    name: 'Ofertas Parceiras',
     status: 'active'
   },
 ]);
 
 use('ms-product');
 db.categories.find();
+
+use('ms-product');
+db.categories.deleteMany({});
