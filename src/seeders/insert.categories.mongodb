@@ -1,28 +1,79 @@
 use('ms-product');
 db.categories.insertMany([
   {
+    _id: '642b63864e24e7adfe0cd8bc',
     name: 'Figures',
-    status: 'active'
+    status: 'active',
+    sub_categories: [
+      'Funko Pop',
+      'Estatueta',
+      'Padrão',
+      'Tamanho Real',
+    ],
+    tags: ['G', 'M', 'P', 'Lançamento', 'Artesanal'],
+    thumbnail: 'https://c1.wallpaperflare.com/preview/395/796/951/star-wars-stormtrooper-toys-models.jpg',
   },
   {
+    _id: '642b639b505beb195e9d7227',
     name: 'Moda',
-    status: 'active'
+    status: 'active',
+    sub_categories: [
+      'Camisetas',
+      'Regatas',
+      'Calças',
+      'Tênis',
+      'Máscaras',
+      'Acessórios',
+      'Blusas',
+      'Moleton',
+    ],
+    tags: ['PP', 'P', 'M', 'G', 'GG', 'XG', 'XGG', 'Pop', 'Casual', 'Animes', 'Lançamento'],
+    thumbnail: 'https://st2.depositphotos.com/2895903/11203/i/450/depositphotos_112034388-stock-photo-young-trendy-man-and-woman.jpg',
   },
   {
+    _id: '642b63b4665694957664317a',
     name: 'Eletrônicos',
-    status: 'active'
+    status: 'active',
+    sub_categories: [
+      'Samtphone',
+      'PCs e Notebooks',
+      'Peças',
+      'Acessórios',
+      'Monitores e TVs',
+      'IoT',
+    ],
+    tags: [],
+    thumbnail: 'https://img.freepik.com/free-vector/gradient-black-background-with-realistic-elements_23-2149154116.jpg',
   },
   {
+    _id: '642b63c64eb9502e0631ed17',
     name: 'Assinaturas',
-    status: 'active'
+    status: 'active',
+    sub_categories: [
+      'BOX',
+      'Revistas',
+      'Mangás',
+    ],
+    tags: [],
+    thumbnail: 'https://thumbs.dreamstime.com/b/shine-box-cartoon-style-black-background-open-gift-vector-illustration-stock-image-eps-216467651.jpg',
   },
   {
+    _id: '642b63dd6149e4f69add28f9',
     name: 'Sorteios',
-    status: 'active'
+    status: 'active',
+    sub_categories: [
+      'Padrão',
+      'Premium',
+    ],
+    tags: [],
+    thumbnail: 'https://media.istockphoto.com/id/1193855498/pt/foto/casino-background-luxury-casino-roulette-wheel-on-black-background-casino-theme-close-up-white.jpg?s=612x612&w=0&k=20&c=V_eRbQeGOpCN-huEfVl4OuIjDaY7h1YGK2ULw1vqEYs=',
   },
   {
+    _id: '642b63e6fc7a7dd64f2c747f',
     name: 'Ofertas Parceiras',
-    status: 'active'
+    status: 'active',
+    tags: ['Tecnologia', 'Moda', 'Variedades'],
+    thumbnail: 'no_thumb',
   },
 ]);
 
