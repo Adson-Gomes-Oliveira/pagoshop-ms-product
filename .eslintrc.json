@@ -11,6 +11,7 @@
     "parserOptions": {
         "ecmaVersion": "latest"
     },
+    "ignorePatterns": ["/src/seeders/*.mongodb"],
     "rules": {
         "linebreak-style": "off",
         "no-underscore-dangle": "off"
