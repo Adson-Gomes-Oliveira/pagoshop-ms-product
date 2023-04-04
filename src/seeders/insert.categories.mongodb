@@ -54,7 +54,7 @@ db.categories.insertMany([
       'Revistas',
       'Mangas',
     ],
-    tags: [],
+    tags: ['DC', 'batman', 'coringa'],
     thumbnail: 'https://thumbs.dreamstime.com/b/shine-box-cartoon-style-black-background-open-gift-vector-illustration-stock-image-eps-216467651.jpg',
   },
   {
