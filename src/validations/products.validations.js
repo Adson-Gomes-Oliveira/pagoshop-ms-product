@@ -8,9 +8,11 @@ const create = (payloadToValidate) => {
     description: JOI.string().required(),
     thumbnail: JOI.string(),
     slug: JOI.string().pattern(/^[a-zA-Z0-9-]+$/).required(),
-    unit_price: JOI.number().required(),
+    unitPrice: JOI.number().required(),
     quantity: JOI.number().min(1).max(10000).required(),
     category: JOI.string().required(),
+    subCategory: JOI.array().items(JOI.string()),
+    tags: JOI.array().items(JOI.string()),
   }).validate(payloadToValidate);
 
   if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);

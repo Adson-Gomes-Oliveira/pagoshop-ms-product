@@ -5,7 +5,7 @@ const customError = require('../helpers/error.custom');
 const create = (payload) => {
   const { error } = JOI.object({
     name: JOI.string().min(3).pattern(/^[^0-9]/).required(),
-    sub_categories: JOI.array().items(JOI.string()),
+    subCategories: JOI.array().items(JOI.string()),
     tags: JOI.array().items(JOI.string()),
     thumbnail: JOI.string().required(),
   }).validate(payload);
@@ -17,7 +17,7 @@ const update = (payload) => {
   const { error } = JOI.object({
     name: JOI.string().min(3).pattern(/^[^0-9]/).required(),
     status: JOI.string().pattern(/^(active|inactive)$/).required(),
-    sub_categories: JOI.array().items(JOI.string()),
+    subCategories: JOI.array().items(JOI.string()),
     tags: JOI.array().items(JOI.string()),
     thumbnail: JOI.string().required(),
   }).validate(payload);
