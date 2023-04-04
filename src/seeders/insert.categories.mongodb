@@ -11,7 +11,7 @@ db.categories.insertMany([
       'Tamanho Real',
     ],
     tags: ['G', 'M', 'P', 'Lançamento', 'Artesanal'],
-    thumbnail: 'https://c1.wallpaperflare.com/preview/395/796/951/star-wars-stormtrooper-toys-models.jpg',
+    thumbnail: 'https://i.ibb.co/d5Pf9zX/figures-thumb-trooper.png',
   },
   {
     _id: '642b639b505beb195e9d7227',
@@ -28,7 +28,7 @@ db.categories.insertMany([
       'Moleton',
     ],
     tags: ['PP', 'P', 'M', 'G', 'GG', 'XG', 'XGG', 'Pop', 'Casual', 'Animes', 'Lançamento'],
-    thumbnail: 'https://st2.depositphotos.com/2895903/11203/i/450/depositphotos_112034388-stock-photo-young-trendy-man-and-woman.jpg',
+    thumbnail: 'https://i.ibb.co/wJnmnxg/moda-thumb-trooper.png',
   },
   {
     _id: '642b63b4665694957664317a',
@@ -43,7 +43,7 @@ db.categories.insertMany([
       'IoT',
     ],
     tags: ['samsung', 'motorola', 'lg', 'xiaomi', 'apple', 'hq'],
-    thumbnail: 'https://img.freepik.com/free-vector/gradient-black-background-with-realistic-elements_23-2149154116.jpg',
+    thumbnail: 'https://i.ibb.co/YpNgzYN/eletro-thumb-trooper.png',
   },
   {
     _id: '642b63c64eb9502e0631ed17',
