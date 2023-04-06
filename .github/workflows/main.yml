@@ -11,5 +11,8 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Up database container
+        run: docker-compose up -d mongodb-ms-product-test
+
       - name: Test code
         run: npm test
