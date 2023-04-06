@@ -11,6 +11,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Creating network
+        run: docker network create trooper-network
+
       - name: Up database container
         run: docker-compose up -d mongodb-ms-product-test
 
