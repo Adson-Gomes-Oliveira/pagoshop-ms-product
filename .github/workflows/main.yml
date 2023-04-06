@@ -1,0 +1,15 @@
+name: trooper-product-workflow
+on: [push, pull_request]
+jobs:
+  check-tests:
+    name: Tests for products and categories
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Test code
+        run: npm test
