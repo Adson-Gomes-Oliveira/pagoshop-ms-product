@@ -35,7 +35,8 @@ describe('Testing products CRUD', () => {
   it('POST: A product should be created', async () => {
     const response = await request(app)
       .post('/api/products')
-      .send(PRODUCT_MOCK_PAYLOAD);
+      .send(PRODUCT_MOCK_PAYLOAD)
+      .expect(HTTPStatus.CREATED);
 
     expect(response.body).toHaveProperty('_id');
     expect(response.body).toHaveProperty('category');
@@ -67,7 +68,7 @@ describe('Testing products CRUD', () => {
     const NEW_PRODUCT_MOCK_PAYLOAD = {
       ...PRODUCT_MOCK_PAYLOAD,
       slug: 'smartphone-galaxy-s20-fe',
-      unit_price: 2150,
+      unitPrice: 2150,
     };
 
     const responsePost = await request(app)

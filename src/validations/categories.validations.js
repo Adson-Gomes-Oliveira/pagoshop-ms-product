@@ -10,7 +10,7 @@ const create = (payload) => {
     thumbnail: JOI.string().required(),
   }).validate(payload);
 
-  if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
+  if (error) throw customError(error.message.replace(/\\|"/g, ''), HTTPStatus.UN_ENTITY);
 };
 
 const update = (payload) => {
@@ -22,7 +22,7 @@ const update = (payload) => {
     thumbnail: JOI.string().required(),
   }).validate(payload);
 
-  if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
+  if (error) throw customError(error.message.replace(/\\|"/g, ''), HTTPStatus.UN_ENTITY);
 };
 
 const updateStatus = (payload) => {
@@ -30,7 +30,7 @@ const updateStatus = (payload) => {
     status: JOI.string().pattern(/^(active|inactive)$/).required(),
   }).validate(payload);
 
-  if (error) throw customError(error.message, HTTPStatus.UN_ENTITY);
+  if (error) throw customError(error.message.replace(/\\|"/g, ''), HTTPStatus.UN_ENTITY);
 };
 
 module.exports = {

@@ -6,12 +6,11 @@ const PRODUCT_MOCK_INSTANCE = {
   description: 'no-desc',
   thumbnail: 'https://image.com/image.png',
   slug: 'galaxy-s20',
-  unit_price: 1999.99,
+  unitPrice: 1999.99,
   quantity: 10,
-  category: {
-    name: 'SMARTPHONE',
-    status: 'active',
-  },
+  subCategory: [],
+  tags: [],
+  category: '551137c2f9e1fac808a5f572',
 };
 
 const PRODUCT_MOCK_PAYLOAD = {
@@ -19,8 +18,10 @@ const PRODUCT_MOCK_PAYLOAD = {
   description: 'no-desc',
   thumbnail: 'https://image.com/image.png',
   slug: 'galaxy-s20',
-  unit_price: 1999.99,
+  unitPrice: 1999.99,
   quantity: 10,
+  subCategory: [],
+  tags: [],
   category: '551137c2f9e1fac808a5f572',
 };
 

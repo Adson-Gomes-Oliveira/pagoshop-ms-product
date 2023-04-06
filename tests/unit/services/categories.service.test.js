@@ -4,7 +4,7 @@ const {
   CATEGORY_MOCK_INSTANCE, CATEGORY_MOCK_PAYLOAD,
 } = require('../../mocks/categories.mock');
 
-describe('Testing Products Services', () => {
+describe('Testing Categories Services', () => {
   beforeAll(() => {
     jest.spyOn(CategoriesModel, 'find').mockResolvedValue([CATEGORY_MOCK_INSTANCE]);
     jest.spyOn(CategoriesModel, 'findById').mockResolvedValue(CATEGORY_MOCK_INSTANCE);

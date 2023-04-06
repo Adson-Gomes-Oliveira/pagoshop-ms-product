@@ -5,61 +5,171 @@ const {
 } = require('../../mocks/products.mock');
 
 describe('Testing Products Services', () => {
-  beforeAll(() => {
-    const mockPopulateArray = jest.fn().mockReturnValue([PRODUCT_MOCK_INSTANCE]);
-    const mockPopulateObject = jest.fn().mockReturnValue(PRODUCT_MOCK_INSTANCE);
-    const mockFind = jest.fn().mockReturnValue({ populate: mockPopulateArray });
-    const mockFindById = jest.fn().mockReturnValue({ populate: mockPopulateObject });
+  describe('GET: A list of products', () => {
+    beforeAll(() => {
+      jest.spyOn(ProductsModel, 'find').mockResolvedValueOnce([PRODUCT_MOCK_INSTANCE])
+        .mockResolvedValue([]);
+    });
 
-    jest.spyOn(ProductsModel, 'find').mockImplementationOnce(mockFind);
-    jest.spyOn(ProductsModel, 'findById').mockImplementation(mockFindById);
-    jest.spyOn(ProductsModel, 'create').mockResolvedValue(PRODUCT_MOCK_INSTANCE);
-    jest.spyOn(ProductsModel, 'findByIdAndUpdate').mockResolvedValue({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
-    jest.spyOn(ProductsModel, 'findByIdAndDelete').mockResolvedValue();
-  });
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
 
-  afterAll(() => {
-    jest.clearAllMocks();
-  });
+    it('should be returned with success', async () => {
+      const resultProperties = Object.keys(PRODUCT_MOCK_INSTANCE);
+      const productListTest = await ProductServices.findAll();
+      expect(productListTest).toBeInstanceOf(Array);
+      resultProperties.forEach((prop) => {
+        expect(productListTest[0]).toHaveProperty(prop);
+      });
+    });
 
-  it('GET: A list of products should be returned', async () => {
-    const resultProperties = Object.keys(PRODUCT_MOCK_INSTANCE);
-    const productListTest = await ProductServices.findAll();
-    expect(productListTest).toBeInstanceOf(Array);
-    resultProperties.forEach((prop) => {
-      expect(productListTest[0]).toHaveProperty(prop);
+    it('should fail and throws 404 error', async () => {
+      try {
+        await ProductServices.findAll();
+      } catch (error) {
+        expect(error.status).toBe(404);
+        expect(error.message).toBe('Content not found');
+      }
     });
   });
 
-  it('GET: A specific product should be returned', async () => {
-    const productListTest = await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
-    expect(productListTest).toBe(PRODUCT_MOCK_INSTANCE);
+  describe('GET: A specific product', () => {
+    beforeAll(() => {
+      jest.spyOn(ProductsModel, 'findById').mockResolvedValueOnce(PRODUCT_MOCK_INSTANCE)
+        .mockResolvedValue();
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should be returned with success', async () => {
+      const productListTest = await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
+      expect(productListTest).toBe(PRODUCT_MOCK_INSTANCE);
+    });
+
+    it('should fail and throws 404 error', async () => {
+      try {
+        await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
+      } catch (error) {
+        expect(error.status).toBe(404);
+        expect(error.message).toBe('Content not found');
+      }
+    });
   });
 
-  it('POST: A list of product in order format should be returned with success', async () => {
+  describe('POST: A list of product in order format', () => {
     const RESULT_MOCK = {
-      product: undefined,
+      product: 'SAMSUNG GALAXY S20FE',
       quantity: PRODUCT_ORDER_MOCK_PAYLOAD[0].quantity,
-      price: PRODUCT_ORDER_MOCK_PAYLOAD[0].actualUnitPrice - PRODUCT_ORDER_MOCK_PAYLOAD[0].discount,
+      price: PRODUCT_ORDER_MOCK_PAYLOAD[0]
+        .actualUnitPrice - PRODUCT_ORDER_MOCK_PAYLOAD[0]
+        .discount,
     };
-    const productTest = await ProductServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
-    expect(productTest[0]).toStrictEqual(RESULT_MOCK);
-    expect(productTest[1]).toStrictEqual(RESULT_MOCK);
+
+    beforeAll(() => {
+      jest.spyOn(ProductsModel, 'findById').mockResolvedValueOnce(RESULT_MOCK)
+        .mockResolvedValueOnce(RESULT_MOCK)
+        .mockResolvedValueOnce()
+        .mockResolvedValue();
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should be returned with success', async () => {
+      const productTest = await ProductServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
+      expect(productTest[0]).toStrictEqual(RESULT_MOCK);
+      expect(productTest[1]).toStrictEqual(RESULT_MOCK);
+    });
+
+    it('should fail and throws 404 error', async () => {
+      try {
+        await ProductServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
+      } catch (error) {
+        expect(error.status).toBe(404);
+        expect(error.message).toBe('Content not found');
+      }
+    });
   });
 
-  it('POST: A product should be added with success', async () => {
-    const productTest = await ProductServices.create(PRODUCT_MOCK_PAYLOAD);
-    expect(productTest).toHaveProperty('_id');
-    expect(productTest).toBe(PRODUCT_MOCK_INSTANCE);
+  describe('POST: A product', () => {
+    beforeAll(() => {
+      jest.spyOn(ProductsModel, 'create').mockResolvedValue(PRODUCT_MOCK_INSTANCE);
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should be created with success', async () => {
+      const productTest = await ProductServices.create(PRODUCT_MOCK_PAYLOAD);
+      expect(productTest).toHaveProperty('_id');
+      expect(productTest).toBe(PRODUCT_MOCK_INSTANCE);
+    });
+
+    it('should fail when validation is failing and throws 422 error', async () => {
+      try {
+        const { product: _, ...PRODUCT_MOCK_PAYLOAD_WRONG } = PRODUCT_MOCK_PAYLOAD;
+        await ProductServices.create(PRODUCT_MOCK_PAYLOAD_WRONG);
+      } catch (error) {
+        expect(error.status).toBe(422);
+        expect(error.message).toBe('product is required');
+      }
+    });
   });
 
-  it('PUT: A product should be updated with success', async () => {
-    const productTest = await ProductServices.update({ ...PRODUCT_MOCK_PAYLOAD, product: 'Iphone 13' });
-    expect(productTest).toStrictEqual({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
+  describe('PUT: A product', () => {
+    beforeAll(() => {
+      jest.spyOn(ProductsModel, 'findByIdAndUpdate').mockResolvedValueOnce({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' })
+        .mockResolvedValue();
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should be updated with success', async () => {
+      const productTest = await ProductServices.update(PRODUCT_MOCK_INSTANCE._id, { ...PRODUCT_MOCK_PAYLOAD, product: 'Iphone 13' });
+      expect(productTest).toStrictEqual({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
+    });
+
+    it('should fail when validation is failing and throws 422 error', async () => {
+      try {
+        const { unitPrice: _, ...PRODUCT_MOCK_PAYLOAD_WRONG } = PRODUCT_MOCK_PAYLOAD;
+        await ProductServices.update(PRODUCT_MOCK_INSTANCE._id, { ...PRODUCT_MOCK_PAYLOAD_WRONG, product: 'Iphone 13' });
+      } catch (error) {
+        expect(error.status).toBe(422);
+        // eslint-disable-next-line no-useless-escape
+        expect(error.message).toMatch('unitPrice is required');
+      }
+    });
+
+    it('should fail when id does not exist', async () => {
+      try {
+        const { unitPrice: _, ...PRODUCT_MOCK_PAYLOAD_WRONG } = PRODUCT_MOCK_PAYLOAD;
+        await ProductServices.update({ ...PRODUCT_MOCK_PAYLOAD_WRONG, product: 'Iphone 13' });
+      } catch (error) {
+        expect(error.status).toBe(400);
+        expect(error.message).toBe('Id do not exist');
+      }
+    });
   });
 
-  it('DELETE: A product should be deleted with success', async () => {
-    const productTest = await ProductServices.deleteOne(PRODUCT_MOCK_INSTANCE._id);
-    expect(productTest).toBe(undefined);
+  describe('DELETE: A product', () => {
+    beforeAll(() => {
+      jest.spyOn(ProductsModel, 'findByIdAndDelete').mockResolvedValue();
+    });
+
+    afterAll(() => {
+      jest.clearAllMocks();
+    });
+
+    it('should be deleted with success', async () => {
+      const productTest = await ProductServices.deleteOne(PRODUCT_MOCK_INSTANCE._id);
+      expect(productTest).toBe(undefined);
+    });
   });
 });

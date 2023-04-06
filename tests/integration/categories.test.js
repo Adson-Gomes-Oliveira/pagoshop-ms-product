@@ -46,6 +46,9 @@ describe('Testing categories CRUD', () => {
   it('PUT: A category should be edited', async () => {
     const NEW_CATEGORY_MOCK_PAYLOAD = {
       name: 'CELULAR INTELIGENTE',
+      subCategories: [],
+      tags: [],
+      thumbnail: 'http://imgbb.url',
       status: 'inactive',
     };
 

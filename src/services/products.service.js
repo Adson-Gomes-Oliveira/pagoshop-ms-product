@@ -7,6 +7,8 @@ const validate = require('../validations/products.validations');
 const formatList = async (product) => {
   const productToFind = await ProductsModel.findById(product.productId);
 
+  if (!productToFind) throw CustomError('Content not found', HTTPStatus.NOT_FOUND);
+
   return {
     product: productToFind.product,
     quantity: product.quantity,
@@ -15,7 +17,10 @@ const formatList = async (product) => {
 };
 
 const findAll = async () => {
-  const productsList = await ProductsModel.find().populate('category');
+  const productsList = await ProductsModel.find();
+
+  if (productsList.length === 0) throw CustomError('Content not found', HTTPStatus.NOT_FOUND);
+
   return productsList;
 };
 
@@ -25,8 +30,9 @@ const findByOrder = async (payload) => {
 };
 
 const findOne = async (id) => {
-  const product = await ProductsModel.findById(id).populate('category');
-  if (!product) return new CustomError('Entity not found', HTTPStatus.NOT_FOUND);
+  const product = await ProductsModel.findById(id);
+
+  if (!product) throw CustomError('Content not found', HTTPStatus.NOT_FOUND);
 
   return product;
 };
