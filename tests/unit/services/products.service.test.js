@@ -1,5 +1,5 @@
 const ProductsModel = require('../../../src/models/products.model');
-const ProductServices = require('../../../src/services/products.service');
+const ProductsServices = require('../../../src/services/products.service');
 const {
   PRODUCT_MOCK_INSTANCE, PRODUCT_MOCK_PAYLOAD, PRODUCT_ORDER_MOCK_PAYLOAD,
 } = require('../../mocks/products.mock');
@@ -17,7 +17,7 @@ describe('Testing Products Services', () => {
 
     it('should be returned with success', async () => {
       const resultProperties = Object.keys(PRODUCT_MOCK_INSTANCE);
-      const productListTest = await ProductServices.findAll();
+      const productListTest = await ProductsServices.findAll();
       expect(productListTest).toBeInstanceOf(Array);
       resultProperties.forEach((prop) => {
         expect(productListTest[0]).toHaveProperty(prop);
@@ -26,7 +26,7 @@ describe('Testing Products Services', () => {
 
     it('should fail and throws 404 error', async () => {
       try {
-        await ProductServices.findAll();
+        await ProductsServices.findAll();
       } catch (error) {
         expect(error.status).toBe(404);
         expect(error.message).toBe('Content not found');
@@ -45,13 +45,13 @@ describe('Testing Products Services', () => {
     });
 
     it('should be returned with success', async () => {
-      const productListTest = await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
+      const productListTest = await ProductsServices.findOne(PRODUCT_MOCK_INSTANCE._id);
       expect(productListTest).toBe(PRODUCT_MOCK_INSTANCE);
     });
 
     it('should fail and throws 404 error', async () => {
       try {
-        await ProductServices.findOne(PRODUCT_MOCK_INSTANCE._id);
+        await ProductsServices.findOne(PRODUCT_MOCK_INSTANCE._id);
       } catch (error) {
         expect(error.status).toBe(404);
         expect(error.message).toBe('Content not found');
@@ -80,14 +80,14 @@ describe('Testing Products Services', () => {
     });
 
     it('should be returned with success', async () => {
-      const productTest = await ProductServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
+      const productTest = await ProductsServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
       expect(productTest[0]).toStrictEqual(RESULT_MOCK);
       expect(productTest[1]).toStrictEqual(RESULT_MOCK);
     });
 
     it('should fail and throws 404 error', async () => {
       try {
-        await ProductServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
+        await ProductsServices.findByOrder(PRODUCT_ORDER_MOCK_PAYLOAD);
       } catch (error) {
         expect(error.status).toBe(404);
         expect(error.message).toBe('Content not found');
@@ -105,7 +105,7 @@ describe('Testing Products Services', () => {
     });
 
     it('should be created with success', async () => {
-      const productTest = await ProductServices.create(PRODUCT_MOCK_PAYLOAD);
+      const productTest = await ProductsServices.create(PRODUCT_MOCK_PAYLOAD);
       expect(productTest).toHaveProperty('_id');
       expect(productTest).toBe(PRODUCT_MOCK_INSTANCE);
     });
@@ -113,7 +113,7 @@ describe('Testing Products Services', () => {
     it('should fail when validation is failing and throws 422 error', async () => {
       try {
         const { product: _, ...PRODUCT_MOCK_PAYLOAD_WRONG } = PRODUCT_MOCK_PAYLOAD;
-        await ProductServices.create(PRODUCT_MOCK_PAYLOAD_WRONG);
+        await ProductsServices.create(PRODUCT_MOCK_PAYLOAD_WRONG);
       } catch (error) {
         expect(error.status).toBe(422);
         expect(error.message).toBe('product is required');
@@ -132,25 +132,25 @@ describe('Testing Products Services', () => {
     });
 
     it('should be updated with success', async () => {
-      const productTest = await ProductServices.update(PRODUCT_MOCK_INSTANCE._id, { ...PRODUCT_MOCK_PAYLOAD, product: 'Iphone 13' });
+      const productTest = await ProductsServices.update(PRODUCT_MOCK_INSTANCE._id, { ...PRODUCT_MOCK_PAYLOAD, product: 'Iphone 13' });
       expect(productTest).toStrictEqual({ ...PRODUCT_MOCK_INSTANCE, product: 'Iphone 13' });
     });
 
     it('should fail when validation is failing and throws 422 error', async () => {
       try {
         const { unitPrice: _, ...PRODUCT_MOCK_PAYLOAD_WRONG } = PRODUCT_MOCK_PAYLOAD;
-        await ProductServices.update(PRODUCT_MOCK_INSTANCE._id, { ...PRODUCT_MOCK_PAYLOAD_WRONG, product: 'Iphone 13' });
+        await ProductsServices.update(PRODUCT_MOCK_INSTANCE._id, { ...PRODUCT_MOCK_PAYLOAD_WRONG, product: 'Iphone 13' });
       } catch (error) {
         expect(error.status).toBe(422);
         // eslint-disable-next-line no-useless-escape
-        expect(error.message).toMatch('unitPrice is required');
+        expect(error.message).toBe('unitPrice is required');
       }
     });
 
     it('should fail when id does not exist', async () => {
       try {
         const { unitPrice: _, ...PRODUCT_MOCK_PAYLOAD_WRONG } = PRODUCT_MOCK_PAYLOAD;
-        await ProductServices.update({ ...PRODUCT_MOCK_PAYLOAD_WRONG, product: 'Iphone 13' });
+        await ProductsServices.update({ ...PRODUCT_MOCK_PAYLOAD_WRONG, product: 'Iphone 13' });
       } catch (error) {
         expect(error.status).toBe(400);
         expect(error.message).toBe('Id do not exist');
@@ -168,7 +168,7 @@ describe('Testing Products Services', () => {
     });
 
     it('should be deleted with success', async () => {
-      const productTest = await ProductServices.deleteOne(PRODUCT_MOCK_INSTANCE._id);
+      const productTest = await ProductsServices.deleteOne(PRODUCT_MOCK_INSTANCE._id);
       expect(productTest).toBe(undefined);
     });
   });
