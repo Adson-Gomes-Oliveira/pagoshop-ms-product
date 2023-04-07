@@ -17,7 +17,7 @@ const createPaymentByOrder = async (queue, exchange) => {
         messageContent: {
           productsOrdered: products,
         },
-        processHash: actualMessage.processHash,
+        invoiceId: actualMessage.invoiceId,
       });
       consumerChannel.ack(msg);
     }
