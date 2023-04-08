@@ -1,10 +1,10 @@
 use('ms-product');
 db.categories.insertMany([
   {
-    _id: '642b63864e24e7adfe0cd8bc',
+    _id: ObjectId('642b63864e24e7adfe0cd8bc'),
     name: 'Figures',
     status: 'active',
-    sub_categories: [
+    subCategories: [
       'Funko Pop',
       'Estatueta',
       'Padrao',
@@ -14,10 +14,10 @@ db.categories.insertMany([
     thumbnail: 'https://i.ibb.co/d5Pf9zX/figures-thumb-trooper.png',
   },
   {
-    _id: '642b639b505beb195e9d7227',
+    _id: ObjectId('642b639b505beb195e9d7227'),
     name: 'Moda',
     status: 'active',
-    sub_categories: [
+    subCategories: [
       'Camisetas',
       'Regatas',
       'Calcas',
@@ -31,10 +31,10 @@ db.categories.insertMany([
     thumbnail: 'https://i.ibb.co/wJnmnxg/moda-thumb-trooper.png',
   },
   {
-    _id: '642b63b4665694957664317a',
+    _id: ObjectId('642b63b4665694957664317a'),
     name: 'Eletrônicos',
     status: 'active',
-    sub_categories: [
+    subCategories: [
       'Smartphone',
       'PCs e Notebooks',
       'Pecas',
@@ -46,10 +46,10 @@ db.categories.insertMany([
     thumbnail: 'https://i.ibb.co/YpNgzYN/eletro-thumb-trooper.png',
   },
   {
-    _id: '642b63c64eb9502e0631ed17',
+    _id: ObjectId('642b63c64eb9502e0631ed17'),
     name: 'Assinaturas',
     status: 'active',
-    sub_categories: [
+    subCategories: [
       'BOX',
       'Revistas',
       'Mangas',
@@ -58,10 +58,10 @@ db.categories.insertMany([
     thumbnail: 'https://thumbs.dreamstime.com/b/shine-box-cartoon-style-black-background-open-gift-vector-illustration-stock-image-eps-216467651.jpg',
   },
   {
-    _id: '642b63dd6149e4f69add28f9',
+    _id: ObjectId('642b63dd6149e4f69add28f9'),
     name: 'Sorteios',
     status: 'active',
-    sub_categories: [
+    subCategories: [
       'Padrao',
       'Premium',
     ],
@@ -69,7 +69,7 @@ db.categories.insertMany([
     thumbnail: 'https://media.istockphoto.com/id/1193855498/pt/foto/casino-background-luxury-casino-roulette-wheel-on-black-background-casino-theme-close-up-white.jpg?s=612x612&w=0&k=20&c=V_eRbQeGOpCN-huEfVl4OuIjDaY7h1YGK2ULw1vqEYs=',
   },
   {
-    _id: '642b63e6fc7a7dd64f2c747f',
+    _id: ObjectId('642b63e6fc7a7dd64f2c747f'),
     name: 'Ofertas Parceiras',
     status: 'active',
     tags: ['Tecnologia', 'Moda', 'Variedades'],
