@@ -5,6 +5,8 @@ const sendProductToInvoice = require('./sendProductToInvoice.producer.service');
 const createPaymentByOrder = async (queue, exchange) => {
   const connectionMQ = await amqplib.connect('amqp://guest:guest@rabbit-ms-gateway:5672');
   const consumerChannel = await connectionMQ.createChannel();
+  await consumerChannel.assertExchange(exchange, 'fanout', { durable: true });
+  await consumerChannel.assertQueue(queue, { durable: true });
   await consumerChannel.bindQueue(queue, exchange, '');
 
   await consumerChannel.consume(queue, async (msg) => {
