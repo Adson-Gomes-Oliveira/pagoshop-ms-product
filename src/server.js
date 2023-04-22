@@ -8,10 +8,10 @@ const PORT = process.env.PORT || 3001;
 
 const USER = process.env.DB_USER || 'root';
 const PASSWORD = process.env.DB_PASSWORD || 'secret';
-const HOST = process.env.DB_HOST || '127.0.0.1';
-const DATABASE = process.env.DB_NAME || 'ecomm-product';
+const HOST = process.env.DB_HOST || '127.0.0.1:27017';
+const DATABASE = process.env.DB_NAME || 'ecomm-product?authSource=admin';
 
-mongoose.connect(`mongodb://${USER}:${PASSWORD}@${HOST}:27017/${DATABASE}?authSource=admin`)
+mongoose.connect(`mongodb://${USER}:${PASSWORD}@${HOST}/${DATABASE}`)
   .then(() => {})
   .catch((error) => console.error(error));
 
