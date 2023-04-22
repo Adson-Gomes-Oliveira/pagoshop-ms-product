@@ -8,11 +8,6 @@ services:
     volumes:
       - ./:/app/ms-product
     environment:
-      - PORT=3001
-      - DB_HOST=mongodb-ms-product
-      - DB_USER=root
-      - DB_PASSWORD=secret
-      - DB_NAME=ms-product
       - JWT_SECRET=MTk4OGExOTZkMWYyOWZjZjlmOTcwMWVjZWRjMzc1MzZkOGM0MmFjMjQ0NjcyZjIzZDQwOGU4YTQ1YWQ3NTRjZA==
     depends_on:
       - mongodb-ms-product
