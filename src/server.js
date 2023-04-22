@@ -11,7 +11,7 @@ const PASSWORD = process.env.DB_PASSWORD || 'secret';
 const HOST = process.env.DB_HOST || '127.0.0.1:27017';
 const DATABASE = process.env.DB_NAME || 'ecomm-product?authSource=admin';
 
-mongoose.connect(`mongodb://${USER}:${PASSWORD}@${HOST}/${DATABASE}`)
+mongoose.connect(`mongodb+srv://${USER}:${PASSWORD}@${HOST}/${DATABASE}`)
   .then(() => {})
   .catch((error) => console.error(error));
 
