@@ -44,6 +44,16 @@ describe('Testing products CRUD', () => {
     expect(response.body).toEqual(PRODUCT_MOCK_PAYLOAD);
   });
 
+  it('POST: A product should not be created with wrong data', async () => {
+    const { product: _, ...productWithoutName } = PRODUCT_MOCK_PAYLOAD;
+    const response = await request(app)
+      .post('/api/products')
+      .send(productWithoutName)
+      .expect(HTTPStatus.UN_ENTITY);
+
+    expect(response.text).toBe('product is required');
+  });
+
   it('POST: A list of products in order format should be returned', async () => {
     const properties = ['product', 'price', 'quantity'];
     const responseCreate = await request(app)

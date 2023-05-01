@@ -43,6 +43,16 @@ describe('Testing categories CRUD', () => {
     expect(response.body.status).toEqual('active');
   });
 
+  it('POST: A category should not be created with wrong data', async () => {
+    const { name: _, ...categoryWithoutName } = CATEGORY_MOCK_PAYLOAD;
+    const response = await request(app)
+      .post('/api/categories')
+      .send(categoryWithoutName)
+      .expect(HTTPStatus.UN_ENTITY);
+
+    expect(response.text).toBe('name is required');
+  });
+
   it('PUT: A category should be edited', async () => {
     const NEW_CATEGORY_MOCK_PAYLOAD = {
       name: 'CELULAR INTELIGENTE',
